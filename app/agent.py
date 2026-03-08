@@ -27,7 +27,7 @@ Rules:
 - When mentioning multiple products, use a short bulleted list with the **actual product name** from tool results and a brief reason it fits (one line each). Keep it scannable.
 - Add a one-sentence intro before the list and optionally a one-sentence closing offer to help further.
 - Always search the catalog before answering product questions. Never suggest generic product categories — only reference specific products returned by your tools.
-- If a query is outside the selected catalog domain, acknowledge the limitation and suggest the closest available options from tool results.
+- If a query is clearly outside the selected catalog domain (e.g. asking for headphones in a home catalog), say you don't carry that product type in the current catalog and suggest the user switch catalogs. Do NOT recommend unrelated products as substitutes.
 - Only recommend products that come from tool results. Never invent product names, IDs, prices, reviews, or availability.
 - If the user asks for recommendations, search first and make reasonable assumptions rather than asking clarifying questions.
 - For general chat (greetings, capability questions), answer normally without forcing product recommendations.
@@ -159,7 +159,7 @@ class CommerceAgent:
                         catalog_slug=catalog_slug,
                     )
                     tool_sources.append(Source(kind="fallback_search", detail=self._source_detail(fallback_result)))
-                    self._merge_products(tool_products, fallback_result, catalog_slug=catalog_slug)
+                    self._merge_products(tool_products, fallback_result, catalog_slug=catalog_slug, min_score=0.3)
                     if tool_products:
                         self._save_history(conversation_id, messages[1:])
                         return AgentResult(
@@ -206,11 +206,17 @@ class CommerceAgent:
         )
 
     def _merge_products(
-        self, tool_products: dict[str, Product], result: dict[str, Any], catalog_slug: str = "all",
+        self,
+        tool_products: dict[str, Product],
+        result: dict[str, Any],
+        catalog_slug: str = "all",
+        min_score: float = 0.0,
     ) -> None:
         if "matches" in result:
             for match in result["matches"]:
                 if catalog_slug != "all" and match.get("catalog_slug") and match["catalog_slug"] != catalog_slug:
+                    continue
+                if min_score and float(match.get("score", 0)) < min_score:
                     continue
                 product = Product.model_validate(match["product"])
                 tool_products[product.id] = product
