@@ -57,7 +57,8 @@ def list_catalogs() -> dict:
 
 
 def _slugify_catalog_name(value: str) -> str:
-    cleaned = re.sub(r"[^a-z0-9]+", "-", value.lower()).strip("-")
+    spaced = re.sub(r"(?<=[a-z])(?=[A-Z])", " ", value)
+    cleaned = re.sub(r"[^a-z0-9]+", "-", spaced.lower()).strip("-")
     return cleaned or f"upload-{uuid4().hex[:8]}"
 
 
@@ -86,7 +87,7 @@ async def upload_catalog(
 
     upload_result = tools.register_uploaded_catalog(slug=slug, products=products)
     return {
-        "catalog": {"slug": upload_result["slug"], "name": slug.replace("-", " ").title()},
+        "catalog": {"slug": upload_result["slug"], "name": catalog_registry._display_name(slug)},
         "count": upload_result["count"],
         "catalogs": tools.list_catalogs()["catalogs"],
     }

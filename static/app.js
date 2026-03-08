@@ -23,6 +23,49 @@ let autoScrollFrameId = null;
 let autoScrollStoppedByUser = false;
 let isProgrammaticScroll = false;
 
+/* ── Voice input (Web Speech API) ── */
+const micBtn = document.getElementById("micBtn");
+let recognition = null;
+let isListening = false;
+
+if ("webkitSpeechRecognition" in window || "SpeechRecognition" in window) {
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  recognition = new SpeechRecognition();
+  recognition.continuous = false;
+  recognition.interimResults = false;
+  recognition.lang = "en-US";
+  let preVoiceText = "";
+
+  recognition.onresult = (event) => {
+    const transcript = event.results[0][0].transcript;
+    const prefix = preVoiceText ? preVoiceText + " " : "";
+    messageInputEl.value = prefix + transcript;
+  };
+
+  recognition.onend = () => {
+    isListening = false;
+    micBtn.classList.remove("listening");
+  };
+
+  recognition.onerror = () => {
+    isListening = false;
+    micBtn.classList.remove("listening");
+  };
+
+  micBtn.addEventListener("click", () => {
+    if (isListening) {
+      recognition.stop();
+    } else {
+      preVoiceText = messageInputEl.value;
+      isListening = true;
+      micBtn.classList.add("listening");
+      recognition.start();
+    }
+  });
+} else {
+  micBtn.style.display = "none";
+}
+
 promptChipEls.forEach((button) => {
   button.addEventListener("click", () => {
     messageInputEl.value = button.dataset.prompt || "";
@@ -188,7 +231,7 @@ async function loadCatalogs(preferred = "all") {
 
     const uploadOption = document.createElement("option");
     uploadOption.value = "__upload_csv__";
-    uploadOption.textContent = "Upload CSV...";
+    uploadOption.textContent = "Upload Catalog (CSV only)...";
     catalogSelectEl.appendChild(uploadOption);
 
     const available = catalogs.map((item) => item.slug);

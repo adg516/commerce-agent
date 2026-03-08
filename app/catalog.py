@@ -198,13 +198,24 @@ class CatalogRegistry:
                 embeddings_path=embeddings_path,
             )
 
+    @staticmethod
+    def _display_name(slug: str) -> str:
+        """Derive a human-friendly display name from a catalog slug."""
+        import re
+
+        name = slug
+        if name.startswith("upload-"):
+            name = name[len("upload-"):]
+        name = re.sub(r"-[0-9a-f]{4,8}$", "", name)
+        return name.replace("-", " ").replace("_", " ").title()
+
     def list_catalogs(self) -> list[dict[str, str]]:
         catalogs = []
         for slug in sorted(self._stores):
             catalogs.append(
                 {
                     "slug": slug,
-                    "name": slug.replace("-", " ").replace("_", " ").title(),
+                    "name": self._display_name(slug),
                 }
             )
         return catalogs

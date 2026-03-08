@@ -5,10 +5,11 @@ An AI-powered commerce assistant for multiple predefined catalogs. The app suppo
 - General chat about capabilities and shopping help
 - Text-based product recommendation and search
 - Image-based product search using GPT vision plus semantic retrieval
+- Voice input via the Web Speech API (Chrome, Edge, Safari over HTTPS)
 - Catalog switching (`All Catalogs` or a specific catalog)
-- CSV catalog upload (best-effort parsing and indexing)
+- CSV catalog upload (best-effort parsing and indexing at runtime)
 
-The backend is FastAPI, the frontend is plain HTML/CSS/JS, and product grounding happens through tool calls against local catalog files.
+The backend is FastAPI, the frontend is plain HTML/CSS/JS with particle effects, and product grounding happens through tool calls against local catalog files.
 
 ## Why this design
 
@@ -23,25 +24,37 @@ flowchart TB
     User[User] --> Frontend[Static Frontend]
     Frontend --> Api["FastAPI /api/chat"]
     Api --> Agent[Tool Calling Agent]
+    Agent --> ListCatalogs[list_catalogs]
     Agent --> SearchText[search_catalog_text]
     Agent --> SearchImage[search_catalog_image]
     Agent --> GetProduct[get_product]
     Agent --> GetReviews[get_reviews]
-    SearchText --> Catalog[Catalog JSON + Embeddings]
-    SearchImage --> Catalog
-    GetProduct --> Catalog
-    GetReviews --> Catalog
+    ListCatalogs --> Registry[CatalogRegistry]
+    SearchText --> Registry
+    SearchImage --> Registry
+    GetProduct --> Registry
+    GetReviews --> Registry
+    Registry --> CatalogA["data/catalogs/athletic/"]
+    Registry --> CatalogB["data/catalogs/electronics/"]
+    Registry --> CatalogN["data/catalogs/.../"]
 ```
 
 ## Project layout
 
 ```text
-app/          FastAPI app, agent orchestration, retrieval logic
-data/         Predefined catalog JSON and optional embeddings .npy
-static/       Vanilla frontend and placeholder images
-scripts/      One-time precompute script for catalog embeddings
-evals/        Lightweight evaluation prompts and checker
-k8s/          Deployment and service manifests for k3s
+app/            FastAPI app, agent orchestration, retrieval logic
+  agent.py      LLM tool-calling orchestrator
+  catalog.py    CatalogStore / CatalogRegistry for multi-catalog search
+  csv_parser.py Best-effort CSV-to-product parser for uploads
+  config.py     Settings via pydantic-settings
+  main.py       API routes and startup
+  models.py     Pydantic schemas
+  tools.py      Tool implementations (search, product, reviews, upload)
+data/catalogs/  Per-catalog subdirectories with catalog.json + embeddings.npy
+static/         Vanilla HTML/CSS/JS frontend with tsParticles
+scripts/        Embedding precompute, catalog generation, deploy helpers
+evals/          Lightweight evaluation prompts and checker
+k8s/            Deployment and service manifests for k3s / k8s
 ```
 
 ## Catalog retrieval flow
@@ -61,6 +74,23 @@ k8s/          Deployment and service manifests for k3s
 2. GPT vision converts the image into a concise product description.
 3. That description is embedded as text and searched against the same catalog vectors.
 4. The agent explains the matches, but only from tool results.
+
+## Included catalogs
+
+| Slug | Category |
+|------|----------|
+| `athletic` | Running shoes, training tees, shorts, leggings |
+| `electronics` | Headphones, speakers, smart home, wearables |
+| `home` | Kitchen gadgets, bedding, décor |
+| `outdoor` | Tents, hiking boots, backpacks, camping gear |
+| `streetwear` | Sneakers, hoodies, jackets, graphic tees |
+| `beauty` | Skincare, haircare, makeup, fragrance |
+
+Users can also upload their own catalog via CSV from the UI dropdown.
+
+## Voice input
+
+A microphone button next to the text input enables speech-to-text via the browser's Web Speech API. It requires a **secure context** (HTTPS or `localhost`). On plain HTTP the button is hidden automatically. Supported browsers: Chrome, Edge, Safari.
 
 ## Product schema
 
@@ -85,7 +115,7 @@ This gives the retrieval layer enough semantic detail to explain *why* a product
 ### Option A: Run locally (Python)
 
 ```bash
-git clone https://github.com/YOUR_USER/commerce-agent.git
+git clone https://github.com/adg516/commerce-agent.git
 cd commerce-agent
 
 python3 -m venv .venv
@@ -179,7 +209,7 @@ Returns available catalogs including `"all"`.
 
 ### `POST /api/catalogs/upload`
 
-Accepts a CSV file upload and adds it as a searchable catalog at runtime.
+Accepts a multipart CSV file upload (`file` field) and an optional `name` field. Parses the CSV with best-effort column mapping, generates embeddings, and registers the catalog for immediate search.
 
 ### `GET /api/health`
 
