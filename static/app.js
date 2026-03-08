@@ -185,9 +185,7 @@ chatFormEl.addEventListener("submit", async (event) => {
     conversationId = data.conversation_id;
     renderSources(data.sources || []);
     const newProducts = data.products || [];
-    if (newProducts.length > 0) {
-      renderProducts(newProducts);
-    }
+    renderProducts(newProducts);
     await streamAssistantReply(assistantMessage.bubbleEl, data.reply || "");
     selectedImageB64 = null;
     imageInputEl.value = "";
