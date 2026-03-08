@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import threading
 from functools import lru_cache
 from pathlib import Path
 from typing import Any
@@ -176,6 +177,7 @@ class CatalogRegistry:
         self.catalogs_root = catalogs_root
         self.default_catalog_slug = default_catalog_slug
         self._stores: dict[str, CatalogStore] = {}
+        self._lock = threading.Lock()
         self.reload()
 
     def reload(self) -> None:
@@ -289,11 +291,13 @@ class CatalogRegistry:
         return catalog_path, embeddings_path
 
     def register_uploaded_catalog(self, slug: str, catalog_path: Path, embeddings_path: Path) -> None:
-        self._stores[slug] = CatalogStore(
+        store = CatalogStore(
             catalog_slug=slug,
             catalog_path=catalog_path,
             embeddings_path=embeddings_path,
         )
+        with self._lock:
+            self._stores[slug] = store
 
 
 @lru_cache(maxsize=1)

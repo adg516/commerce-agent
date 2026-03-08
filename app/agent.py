@@ -1,6 +1,8 @@
 from __future__ import annotations
 
 import json
+import threading
+import time
 from dataclasses import dataclass
 from typing import Any
 from uuid import uuid4
@@ -10,6 +12,9 @@ from openai import OpenAI
 from app.config import Settings, get_settings
 from app.models import Product, Source
 from app.tools import CatalogTools
+
+_CONVERSATION_TTL = 1800  # 30 minutes
+_MAX_CONVERSATIONS = 500
 
 
 SYSTEM_PROMPT = """
@@ -45,7 +50,33 @@ class CommerceAgent:
         self.settings = settings or get_settings()
         self.client = OpenAI(api_key=self.settings.openai_api_key) if self.settings.openai_api_key else None
         self.tools = CatalogTools(self.settings)
+        self._lock = threading.Lock()
         self._conversations: dict[str, list[dict[str, Any]]] = {}
+        self._last_access: dict[str, float] = {}
+
+    def _get_history(self, conversation_id: str) -> list[dict[str, Any]]:
+        with self._lock:
+            self._last_access[conversation_id] = time.time()
+            return list(self._conversations.get(conversation_id, []))
+
+    def _save_history(self, conversation_id: str, messages: list[dict[str, Any]]) -> None:
+        with self._lock:
+            self._conversations[conversation_id] = messages[-12:]
+            self._last_access[conversation_id] = time.time()
+            self._evict_stale()
+
+    def _evict_stale(self) -> None:
+        """Remove expired or overflow conversations. Caller must hold self._lock."""
+        now = time.time()
+        expired = [cid for cid, ts in self._last_access.items() if now - ts > _CONVERSATION_TTL]
+        for cid in expired:
+            self._conversations.pop(cid, None)
+            self._last_access.pop(cid, None)
+        if len(self._conversations) > _MAX_CONVERSATIONS:
+            oldest = sorted(self._last_access, key=self._last_access.get)
+            for cid in oldest[: len(self._conversations) - _MAX_CONVERSATIONS]:
+                self._conversations.pop(cid, None)
+                self._last_access.pop(cid, None)
 
     def chat(
         self,
@@ -55,7 +86,7 @@ class CommerceAgent:
         catalog_slug: str = "all",
     ) -> AgentResult:
         conversation_id = conversation_id or str(uuid4())
-        history = list(self._conversations.get(conversation_id, []))
+        history = self._get_history(conversation_id)
         tool_products: dict[str, Product] = {}
         tool_sources: list[Source] = []
         image_description: str | None = None
@@ -67,7 +98,7 @@ class CommerceAgent:
                 "The app is set up, but an OpenAI API key is still needed for the full agent flow. "
                 "Once `OPENAI_API_KEY` is configured, I can search the catalog semantically and handle image search."
             )
-            self._conversations[conversation_id] = [*history, {"role": "user", "content": user_content}][-12:]
+            self._save_history(conversation_id, [*history, {"role": "user", "content": user_content}])
             return AgentResult(
                 reply=fallback_reply,
                 conversation_id=conversation_id,
@@ -128,9 +159,9 @@ class CommerceAgent:
                         catalog_slug=catalog_slug,
                     )
                     tool_sources.append(Source(kind="fallback_search", detail=self._source_detail(fallback_result)))
-                    self._merge_products(tool_products, fallback_result)
+                    self._merge_products(tool_products, fallback_result, catalog_slug=catalog_slug)
                     if tool_products:
-                        self._conversations[conversation_id] = messages[1:][-12:]
+                        self._save_history(conversation_id, messages[1:])
                         return AgentResult(
                             reply=self._build_fallback_reply(list(tool_products.values())),
                             conversation_id=conversation_id,
@@ -140,7 +171,7 @@ class CommerceAgent:
                         )
 
                 final_reply = assistant_message.content or "I found a few options for you."
-                self._conversations[conversation_id] = messages[1:][-12:]
+                self._save_history(conversation_id, messages[1:])
                 return AgentResult(
                     reply=final_reply,
                     conversation_id=conversation_id,
@@ -163,9 +194,9 @@ class CommerceAgent:
                     }
                 )
                 tool_sources.append(Source(kind=tool_call.function.name, detail=self._source_detail(result)))
-                self._merge_products(tool_products, result)
+                self._merge_products(tool_products, result, catalog_slug=catalog_slug)
 
-        self._conversations[conversation_id] = messages[1:][-12:]
+        self._save_history(conversation_id, messages[1:])
         return AgentResult(
             reply="I gathered some catalog context, but the response loop took too long. Please try again.",
             conversation_id=conversation_id,
@@ -174,9 +205,13 @@ class CommerceAgent:
             metadata={"image_description": image_description, "mode": "loop_timeout"},
         )
 
-    def _merge_products(self, tool_products: dict[str, Product], result: dict[str, Any]) -> None:
+    def _merge_products(
+        self, tool_products: dict[str, Product], result: dict[str, Any], catalog_slug: str = "all",
+    ) -> None:
         if "matches" in result:
             for match in result["matches"]:
+                if catalog_slug != "all" and match.get("catalog_slug") and match["catalog_slug"] != catalog_slug:
+                    continue
                 product = Product.model_validate(match["product"])
                 tool_products[product.id] = product
         elif "product" in result and isinstance(result["product"], dict):
@@ -199,8 +234,7 @@ class CommerceAgent:
 
     def _run_tool(self, name: str, raw_arguments: str, catalog_slug: str = "all") -> dict[str, Any]:
         arguments = json.loads(raw_arguments or "{}")
-        if "catalog_slug" not in arguments and catalog_slug:
-            arguments["catalog_slug"] = catalog_slug
+        arguments["catalog_slug"] = catalog_slug
 
         if name == "list_catalogs":
             return self.tools.list_catalogs()
@@ -319,7 +353,6 @@ class CommerceAgent:
                         "type": "object",
                         "properties": {
                             "query": {"type": "string"},
-                            "catalog_slug": {"type": "string"},
                             "filters": {
                                 "type": "object",
                                 "properties": {
@@ -350,7 +383,6 @@ class CommerceAgent:
                         "type": "object",
                         "properties": {
                             "image_description": {"type": "string"},
-                            "catalog_slug": {"type": "string"},
                             "filters": {
                                 "type": "object",
                                 "properties": {
@@ -381,7 +413,6 @@ class CommerceAgent:
                         "type": "object",
                         "properties": {
                             "product_id": {"type": "string"},
-                            "catalog_slug": {"type": "string"},
                         },
                         "required": ["product_id"],
                         "additionalProperties": False,
@@ -397,7 +428,6 @@ class CommerceAgent:
                         "type": "object",
                         "properties": {
                             "product_id": {"type": "string"},
-                            "catalog_slug": {"type": "string"},
                         },
                         "required": ["product_id"],
                         "additionalProperties": False,

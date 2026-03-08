@@ -63,7 +63,9 @@ if ("webkitSpeechRecognition" in window || "SpeechRecognition" in window) {
     }
   });
 } else {
-  micBtn.style.display = "none";
+  micBtn.disabled = true;
+  micBtn.style.opacity = "0.3";
+  micBtn.title = "Voice input requires Chrome, Edge, or Safari over HTTPS";
 }
 
 promptChipEls.forEach((button) => {
@@ -107,6 +109,7 @@ if (catalogSelectEl) {
       return;
     }
     selectedCatalog = value || "all";
+    conversationId = (Date.now().toString(36) + Math.random().toString(36).slice(2));
   });
 }
 
@@ -158,7 +161,8 @@ chatFormEl.addEventListener("submit", async (event) => {
 
   try {
     const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 45000);
+    const timeoutMs = selectedImageB64 ? 120000 : 45000;
+    const timeout = setTimeout(() => controller.abort(), timeoutMs);
 
     const response = await fetch("/api/chat", {
       method: "POST",
@@ -402,14 +406,25 @@ function cleanAgentText(text) {
 }
 
 function fileToBase64(file) {
+  const MAX_DIM = 1024;
   return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onload = () => {
-      const result = String(reader.result || "");
-      resolve(result.split(",")[1] || "");
+    const img = new Image();
+    img.onload = () => {
+      let { width, height } = img;
+      if (width > MAX_DIM || height > MAX_DIM) {
+        const scale = MAX_DIM / Math.max(width, height);
+        width = Math.round(width * scale);
+        height = Math.round(height * scale);
+      }
+      const canvas = document.createElement("canvas");
+      canvas.width = width;
+      canvas.height = height;
+      canvas.getContext("2d").drawImage(img, 0, 0, width, height);
+      const dataUrl = canvas.toDataURL("image/jpeg", 0.85);
+      resolve(dataUrl.split(",")[1] || "");
     };
-    reader.onerror = reject;
-    reader.readAsDataURL(file);
+    img.onerror = reject;
+    img.src = URL.createObjectURL(file);
   });
 }
 
