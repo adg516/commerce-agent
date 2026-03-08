@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: commerce-agent
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: commerce-agent
+  template:
+    metadata:
+      labels:
+        app: commerce-agent
+    spec:
+      nodeSelector:
+        kubernetes.io/hostname: ubuntu
+      containers:
+        - name: commerce-agent
+          image: commerce-agent:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8000
+          envFrom:
+            - secretRef:
+                name: commerce-agent-secrets
+          readinessProbe:
+            httpGet:
+              path: /api/health
+              port: 8000
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /api/health
+              port: 8000
+            initialDelaySeconds: 15
+            periodSeconds: 20

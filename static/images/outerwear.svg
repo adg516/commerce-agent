@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" role="img" aria-label="Outerwear placeholder">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4d63ff" />
+      <stop offset="100%" stop-color="#111a44" />
+    </linearGradient>
+  </defs>
+  <rect width="600" height="600" rx="40" fill="url(#bg)" />
+  <path d="M220 120l80 70 80-70 72 95-50 58v183H198V273l-50-58z" fill="#f8fbff" opacity=".95"/>
+  <path d="M300 183v273M246 261h108" fill="none" stroke="#42517e" stroke-width="18" opacity=".32"/>
+  <text x="50%" y="540" text-anchor="middle" font-size="42" fill="#eff4ff" font-family="Inter, Arial, sans-serif">OUTERWEAR</text>
+</svg>

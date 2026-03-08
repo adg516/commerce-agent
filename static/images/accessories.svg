@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" role="img" aria-label="Accessories placeholder">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7e58ff" />
+      <stop offset="100%" stop-color="#1cd3c8" />
+    </linearGradient>
+  </defs>
+  <rect width="600" height="600" rx="40" fill="url(#bg)" />
+  <circle cx="300" cy="232" r="94" fill="#f8fbff" opacity=".95"/>
+  <rect x="184" y="302" width="232" height="72" rx="32" fill="#f8fbff" opacity=".9"/>
+  <path d="M224 232c22-34 54-51 76-51s54 17 76 51" fill="none" stroke="#42517e" stroke-width="18" opacity=".35" stroke-linecap="round"/>
+  <text x="50%" y="540" text-anchor="middle" font-size="42" fill="#eff4ff" font-family="Inter, Arial, sans-serif">ACCESSORIES</text>
+</svg>

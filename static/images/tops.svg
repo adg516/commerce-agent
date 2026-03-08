@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" role="img" aria-label="Tops placeholder">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6fa7ff" />
+      <stop offset="100%" stop-color="#8f6bff" />
+    </linearGradient>
+  </defs>
+  <rect width="600" height="600" rx="40" fill="url(#bg)" />
+  <path d="M214 128l86 46 86-46 72 88-54 55v182H196V271l-54-55z" fill="#f6f8ff" opacity=".92"/>
+  <path d="M252 454V242l48-32 48 32v212" fill="none" stroke="#42517e" stroke-width="18" opacity=".35"/>
+  <text x="50%" y="540" text-anchor="middle" font-size="42" fill="#eff4ff" font-family="Inter, Arial, sans-serif">TOPS</text>
+</svg>

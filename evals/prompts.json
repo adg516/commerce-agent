@@ -1,0 +1,55 @@
+[
+  {
+    "name": "general_greeting",
+    "message": "Hey, what can you help me with?",
+    "expects_products": false
+  },
+  {
+    "name": "general_capabilities",
+    "message": "Can you search by image and also recommend products by budget?",
+    "expects_products": false
+  },
+  {
+    "name": "running_tops_budget",
+    "message": "Recommend breathable running tops under $40",
+    "expects_products": true
+  },
+  {
+    "name": "warm_hiking_layer",
+    "message": "I need a warm layer for winter hiking",
+    "expects_products": true
+  },
+  {
+    "name": "gym_shoe_request",
+    "message": "Show me stable shoes for lifting and HIIT under $100",
+    "expects_products": true
+  },
+  {
+    "name": "yoga_soft_colors",
+    "message": "Show me yoga gear in soft colors",
+    "expects_products": true
+  },
+  {
+    "name": "recovery_accessory",
+    "message": "What should I get after long runs for recovery and convenience?",
+    "expects_products": true
+  },
+  {
+    "name": "image_footwear",
+    "message": "Find something similar to this.",
+    "image_path": "static/images/footwear.png",
+    "expects_products": true
+  },
+  {
+    "name": "image_outerwear",
+    "message": "Match this layer for cold-weather use.",
+    "image_path": "static/images/outerwear.png",
+    "expects_products": true
+  },
+  {
+    "name": "image_accessories",
+    "message": "Find accessories like this.",
+    "image_path": "static/images/accessories.png",
+    "expects_products": true
+  }
+]
