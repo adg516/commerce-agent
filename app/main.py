@@ -18,6 +18,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 STATIC_DIR = BASE_DIR / "static"
 
 app = FastAPI(title="Commerce Agent", version="0.1.0")
+# SCALE: add middleware for structured request logging (correlation IDs, latency,
+# user agent) and integrate with an observability stack (OpenTelemetry, Jaeger).
+# SCALE: add rate limiting middleware (slowapi or API gateway level) to protect
+# against abuse and control per-user request budgets.
 agent = CommerceAgent()
 catalog_registry = get_catalog_registry()
 tools = CatalogTools()
@@ -40,6 +44,9 @@ def serve_index() -> FileResponse:
 
 @app.get("/api/health")
 def health() -> dict[str, str]:
+    # SCALE: add deep health checks — verify DB connectivity, Redis ping,
+    # OpenAI API reachability, and vector DB status. Return degraded status
+    # if any dependency is unhealthy so k8s readiness probes can react.
     return {"status": "ok"}
 
 
@@ -67,6 +74,10 @@ async def upload_catalog(
     file: UploadFile = File(...),
     name: str = Form(""),
 ) -> dict:
+    # SCALE: stream the uploaded file to object storage (S3/GCS) instead of
+    # reading it all into memory. For large CSVs, process rows in batches.
+    # SCALE: emit a pub/sub event (e.g. "catalog.uploaded") so downstream
+    # services (search indexer, analytics) can react asynchronously.
     if not file.filename.lower().endswith(".csv"):
         raise HTTPException(status_code=400, detail="Only CSV uploads are supported.")
 
@@ -95,6 +106,12 @@ async def upload_catalog(
 
 @app.post("/api/chat", response_model=ChatResponse)
 def chat(request: ChatRequest) -> ChatResponse:
+    # SCALE: make this endpoint async and offload the agent.chat() call to a
+    # background task via pub/sub (Redis Streams, Kafka, SQS). Return a job ID
+    # and let the frontend poll GET /api/chat/{job_id} or subscribe via WebSocket.
+    # This prevents long-running LLM calls from blocking the ASGI worker pool.
+    # SCALE: add per-user authentication (JWT/OAuth) and tie conversation_id
+    # to the authenticated user for multi-tenant isolation.
     result = agent.chat(
         message=request.message,
         image_b64=request.image_b64,

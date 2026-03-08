@@ -16,6 +16,14 @@ class Settings(BaseSettings):
     default_catalog_slug: str = "athletic"
     host: str = "0.0.0.0"
     port: int = 8000
+    # SCALE: add settings for external services as you scale out:
+    # redis_url: str = ""                  # conversation store, embedding cache, pub/sub
+    # database_url: str = ""               # PostgreSQL for products, users, analytics
+    # vector_db_url: str = ""              # Pinecone/Qdrant/pgvector endpoint
+    # s3_bucket: str = ""                  # catalog file + image storage
+    # celery_broker_url: str = ""          # async task queue for heavy operations
+    # sentry_dsn: str = ""                 # error tracking
+    # otel_exporter_endpoint: str = ""     # OpenTelemetry traces
 
     model_config = SettingsConfigDict(
         env_file=".env",

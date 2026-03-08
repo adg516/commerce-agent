@@ -12,6 +12,10 @@ from app.models import Product
 
 
 class CatalogTools:
+    # SCALE: this class is a natural boundary for a microservice split.
+    # Search, image description, and embedding generation could each become
+    # independent services behind a message queue or gRPC interface.
+
     def __init__(self, settings: Settings | None = None):
         self.settings = settings or get_settings()
         self.catalog_registry = get_catalog_registry()
@@ -110,8 +114,14 @@ class CatalogTools:
         }
 
     def register_uploaded_catalog(self, slug: str, products: list[dict[str, Any]]) -> dict[str, Any]:
+        # SCALE: for large uploads (1000s of products), move embedding generation
+        # to an async task queue (Celery, Dramatiq, or a Kafka consumer).
+        # Return immediately with a "processing" status and notify via WebSocket
+        # or pub/sub when the catalog is ready for search.
         catalog_path, embeddings_path = self.catalog_registry.save_uploaded_catalog(slug=slug, products=products)
 
+        # SCALE: batch embedding requests in chunks of ~100 to avoid OpenAI rate limits
+        # and add retry logic with exponential backoff for transient failures.
         embeddings = None
         if self.client:
             validated_products = [Product.model_validate(item) for item in products]
@@ -134,6 +144,11 @@ class CatalogTools:
         return {"slug": slug, "count": len(products)}
 
     def describe_image(self, image_b64: str, user_prompt: str = "") -> str:
+        # SCALE: offload image processing to a background worker via pub/sub
+        # (e.g. publish to a Redis Stream or SQS queue, worker picks it up,
+        # result returned via WebSocket or polling endpoint).
+        # SCALE: for local inference, replace with a CLIP model or open_clip
+        # to generate image embeddings directly — skip the text-description bridge.
         if not self.client:
             raise RuntimeError("OPENAI_API_KEY is required for image search.")
 
@@ -164,6 +179,10 @@ class CatalogTools:
         return response.choices[0].message.content or "Unspecified athletic product."
 
     def _embed_text(self, text: str) -> np.ndarray | None:
+        # SCALE: add an embedding cache (Redis, memcached) keyed by hash(text).
+        # Repeated or near-identical queries skip the OpenAI API call entirely.
+        # SCALE: for local embeddings, swap this with a sentence-transformers model
+        # (e.g. all-MiniLM-L6-v2) to eliminate per-query API costs.
         if not self.client:
             return None
 

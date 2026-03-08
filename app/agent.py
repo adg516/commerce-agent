@@ -46,20 +46,32 @@ class AgentResult:
 
 
 class CommerceAgent:
+    # SCALE: inject a metrics client here (e.g. prometheus_client, Datadog statsd)
+    # to track request counts, latencies, tool call distributions, and error rates.
+    # Example: self.metrics = MetricsClient(namespace="commerce_agent")
+
     def __init__(self, settings: Settings | None = None):
         self.settings = settings or get_settings()
         self.client = OpenAI(api_key=self.settings.openai_api_key) if self.settings.openai_api_key else None
         self.tools = CatalogTools(self.settings)
         self._lock = threading.Lock()
+        # SCALE: replace in-memory conversation store with Redis or a database
+        # (e.g. Redis HSET keyed by conversation_id, PostgreSQL jsonb column).
+        # This enables horizontal scaling across multiple pods/workers.
         self._conversations: dict[str, list[dict[str, Any]]] = {}
         self._last_access: dict[str, float] = {}
 
     def _get_history(self, conversation_id: str) -> list[dict[str, Any]]:
+        # SCALE: fetch from Redis/DB instead of local dict.
+        # e.g. redis.hget(f"conv:{conversation_id}", "messages")
         with self._lock:
             self._last_access[conversation_id] = time.time()
             return list(self._conversations.get(conversation_id, []))
 
     def _save_history(self, conversation_id: str, messages: list[dict[str, Any]]) -> None:
+        # SCALE: persist to Redis/DB with TTL instead of in-memory eviction.
+        # e.g. redis.hset(f"conv:{conversation_id}", "messages", json.dumps(messages[-12:]))
+        #      redis.expire(f"conv:{conversation_id}", _CONVERSATION_TTL)
         with self._lock:
             self._conversations[conversation_id] = messages[-12:]
             self._last_access[conversation_id] = time.time()
@@ -85,6 +97,8 @@ class CommerceAgent:
         conversation_id: str | None = None,
         catalog_slug: str = "all",
     ) -> AgentResult:
+        # SCALE: emit metric for chat request received.
+        # e.g. self.metrics.increment("chat.request", tags={"catalog": catalog_slug})
         conversation_id = conversation_id or str(uuid4())
         history = self._get_history(conversation_id)
         tool_products: dict[str, Product] = {}
@@ -122,6 +136,11 @@ class CommerceAgent:
         messages.append({"role": "user", "content": user_content})
 
         for _ in range(4):
+            # SCALE: wrap this call with latency tracking and token-usage metrics.
+            # e.g. self.metrics.timer("openai.chat.latency").start()
+            # SCALE: for high throughput, queue chat requests via a task broker
+            # (Celery, RQ, or pub/sub like Redis Streams / Kafka) and return a
+            # job ID so the frontend can poll or receive results via WebSocket.
             response = self.client.chat.completions.create(
                 model=self.settings.openai_chat_model,
                 temperature=0,
@@ -129,6 +148,9 @@ class CommerceAgent:
                 tools=self._tool_definitions(),
                 tool_choice="auto",
             )
+            # SCALE: log token usage for cost monitoring.
+            # e.g. self.metrics.increment("openai.tokens.prompt", response.usage.prompt_tokens)
+            #      self.metrics.increment("openai.tokens.completion", response.usage.completion_tokens)
 
             assistant_message = response.choices[0].message
             assistant_payload: dict[str, Any] = {
@@ -181,6 +203,8 @@ class CommerceAgent:
                 )
 
             for tool_call in assistant_message.tool_calls:
+                # SCALE: emit per-tool metrics (call count, latency, error rate).
+                # e.g. self.metrics.increment("tool.call", tags={"tool": tool_call.function.name})
                 result = self._run_tool(
                     tool_call.function.name,
                     tool_call.function.arguments,

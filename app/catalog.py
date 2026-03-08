@@ -25,14 +25,23 @@ def build_embedding_text(product: Product) -> str:
 
 
 class CatalogStore:
+    # SCALE: replace file-based catalog storage with a database (PostgreSQL, DynamoDB).
+    # Products would live in a products table, keyed by (catalog_slug, product_id).
+    # This removes the need to load entire catalogs into memory at startup.
+
     def __init__(self, catalog_slug: str, catalog_path: Path, embeddings_path: Path):
         self.catalog_slug = catalog_slug
         self.catalog_path = catalog_path
         self.embeddings_path = embeddings_path
+        # SCALE: instead of loading all products into memory, query from DB on demand.
+        # For very large catalogs (100k+ products), use pagination or streaming.
         self.products = self._load_products()
         self.product_map = {product.id: product for product in self.products}
         self.product_index = {product.id: idx for idx, product in enumerate(self.products)}
         self.embedding_texts = [build_embedding_text(product) for product in self.products]
+        # SCALE: replace local numpy embeddings with a vector database
+        # (Pinecone, Weaviate, pgvector, Qdrant, or FAISS with IVF indexing).
+        # Vector DBs handle similarity search at scale without loading all embeddings into RAM.
         self.embeddings = self._load_embeddings()
 
     def _load_products(self) -> list[Product]:
@@ -87,6 +96,9 @@ class CatalogStore:
         return self._keyword_fallback(query_text=query_text, products=candidates, top_k=top_k)
 
     def _filter_products(self, filters: dict[str, Any]) -> list[Product]:
+        # SCALE: push filtering into a SQL WHERE clause or Elasticsearch query
+        # instead of iterating in Python. Enables indexed lookups on price,
+        # category, gender, etc. at O(log n) instead of O(n).
         matched: list[Product] = []
 
         for product in self.products:
@@ -122,6 +134,9 @@ class CatalogStore:
         products: list[Product],
         top_k: int,
     ) -> list[dict[str, Any]]:
+        # SCALE: replace this brute-force cosine similarity with a vector DB query.
+        # e.g. pinecone_index.query(vector=query_embedding, top_k=top_k, filter={"catalog": slug})
+        # or   pgvector: SELECT * FROM products ORDER BY embedding <=> %s LIMIT %s
         query_embedding = np.asarray(query_embedding, dtype=float)
         query_norm = np.linalg.norm(query_embedding)
         if query_norm == 0:
@@ -235,6 +250,10 @@ class CatalogRegistry:
         filters: dict[str, Any] | None = None,
         top_k: int = 5,
     ) -> list[dict[str, Any]]:
+        # SCALE: with a vector DB, cross-catalog search becomes a single query
+        # with a metadata filter (or no filter for "all"). No need to fan-out
+        # and merge results manually. Also add search result caching (Redis)
+        # for repeated identical queries within a short window.
         if catalog_slug and catalog_slug != "all":
             store = self.get_store(catalog_slug)
             if not store:
@@ -246,6 +265,8 @@ class CatalogRegistry:
                 top_k=top_k,
             )
 
+        # SCALE: fan-out to multiple catalog stores could be parallelized with
+        # concurrent.futures.ThreadPoolExecutor for lower latency at scale.
         merged_results: list[dict[str, Any]] = []
         for store in self._stores.values():
             merged_results.extend(
@@ -283,6 +304,10 @@ class CatalogRegistry:
         return []
 
     def save_uploaded_catalog(self, slug: str, products: list[dict[str, Any]]) -> tuple[Path, Path]:
+        # SCALE: write to a database + object storage (S3/GCS) instead of local disk.
+        # This enables persistence across pod restarts and multi-replica deployments.
+        # Also consider queueing embedding generation as a background job (Celery/RQ)
+        # and notifying the user via WebSocket/pub-sub when the catalog is searchable.
         target_dir = self.catalogs_root / slug
         target_dir.mkdir(parents=True, exist_ok=True)
         catalog_path = target_dir / "catalog.json"
