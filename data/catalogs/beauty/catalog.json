@@ -1,0 +1,697 @@
+[
+  {
+    "id": "bea_001",
+    "name": "HydraCalm Gel Cleanser",
+    "brand": "DermaBloom",
+    "category": "skincare",
+    "subcategory": "cleansers",
+    "description": "Gentle gel cleanser that removes oil without stripping the skin.",
+    "price": 24,
+    "gender": "unisex",
+    "activity": [
+      "daily",
+      "skincare"
+    ],
+    "fit": "regular",
+    "material": "gel formula",
+    "color": "clear",
+    "season": [
+      "all"
+    ],
+    "tags": [
+      "gentle",
+      "daily"
+    ],
+    "image_path": "/static/images/accessories.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "bea_002",
+    "name": "Vitamin C Bright Serum",
+    "brand": "DermaBloom",
+    "category": "skincare",
+    "subcategory": "serums",
+    "description": "Brightening serum that targets dullness and uneven tone.",
+    "price": 38,
+    "gender": "unisex",
+    "activity": [
+      "daily",
+      "skincare"
+    ],
+    "fit": "regular",
+    "material": "serum",
+    "color": "amber",
+    "season": [
+      "all"
+    ],
+    "tags": [
+      "brightening",
+      "antioxidant"
+    ],
+    "image_path": "/static/images/accessories.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "bea_003",
+    "name": "Barrier Repair Cream",
+    "brand": "PureLeaf",
+    "category": "skincare",
+    "subcategory": "moisturizers",
+    "description": "Rich moisturizer designed to support skin barrier recovery.",
+    "price": 32,
+    "gender": "unisex",
+    "activity": [
+      "daily",
+      "night"
+    ],
+    "fit": "regular",
+    "material": "cream",
+    "color": "white",
+    "season": [
+      "all"
+    ],
+    "tags": [
+      "hydrating",
+      "barrier"
+    ],
+    "image_path": "/static/images/accessories.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "bea_004",
+    "name": "SPF 50 Mineral Shield",
+    "brand": "PureLeaf",
+    "category": "skincare",
+    "subcategory": "sunscreen",
+    "description": "Mineral sunscreen with broad-spectrum UV protection.",
+    "price": 29,
+    "gender": "unisex",
+    "activity": [
+      "daily",
+      "outdoor"
+    ],
+    "fit": "regular",
+    "material": "mineral lotion",
+    "color": "ivory",
+    "season": [
+      "all"
+    ],
+    "tags": [
+      "spf50",
+      "uv-protection"
+    ],
+    "image_path": "/static/images/accessories.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "bea_005",
+    "name": "CloudTint Skin Tint",
+    "brand": "LumaHue",
+    "category": "makeup",
+    "subcategory": "skin-tints",
+    "description": "Light coverage skin tint with breathable finish.",
+    "price": 34,
+    "gender": "unisex",
+    "activity": [
+      "daily",
+      "makeup"
+    ],
+    "fit": "regular",
+    "material": "liquid tint",
+    "color": "neutral",
+    "season": [
+      "all"
+    ],
+    "tags": [
+      "light-coverage",
+      "natural"
+    ],
+    "image_path": "/static/images/accessories.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "bea_006",
+    "name": "SoftBlend Concealer",
+    "brand": "LumaHue",
+    "category": "makeup",
+    "subcategory": "concealers",
+    "description": "Buildable concealer for brightening and spot correction.",
+    "price": 22,
+    "gender": "unisex",
+    "activity": [
+      "daily",
+      "makeup"
+    ],
+    "fit": "regular",
+    "material": "liquid",
+    "color": "beige",
+    "season": [
+      "all"
+    ],
+    "tags": [
+      "buildable",
+      "blendable"
+    ],
+    "image_path": "/static/images/accessories.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "bea_007",
+    "name": "VelvetMatte Lip Color",
+    "brand": "StudioGlow",
+    "category": "makeup",
+    "subcategory": "lips",
+    "description": "Comfort matte lip color with long wear and soft feel.",
+    "price": 19,
+    "gender": "unisex",
+    "activity": [
+      "daily",
+      "night"
+    ],
+    "fit": "regular",
+    "material": "cream matte",
+    "color": "rose",
+    "season": [
+      "all"
+    ],
+    "tags": [
+      "long-wear",
+      "matte"
+    ],
+    "image_path": "/static/images/accessories.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "bea_008",
+    "name": "LashLift Mascara",
+    "brand": "StudioGlow",
+    "category": "makeup",
+    "subcategory": "eyes",
+    "description": "Lengthening mascara with smudge-resistant formula.",
+    "price": 21,
+    "gender": "unisex",
+    "activity": [
+      "daily",
+      "makeup"
+    ],
+    "fit": "regular",
+    "material": "mascara",
+    "color": "black",
+    "season": [
+      "all"
+    ],
+    "tags": [
+      "lengthening",
+      "smudge-resistant"
+    ],
+    "image_path": "/static/images/accessories.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "bea_009",
+    "name": "GlossLock Brow Gel",
+    "brand": "LumaHue",
+    "category": "makeup",
+    "subcategory": "brows",
+    "description": "Clear brow gel to set and shape with flexible hold.",
+    "price": 16,
+    "gender": "unisex",
+    "activity": [
+      "daily",
+      "makeup"
+    ],
+    "fit": "regular",
+    "material": "gel",
+    "color": "clear",
+    "season": [
+      "all"
+    ],
+    "tags": [
+      "brows",
+      "hold"
+    ],
+    "image_path": "/static/images/accessories.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "bea_010",
+    "name": "SilkRepair Shampoo",
+    "brand": "RootLab",
+    "category": "haircare",
+    "subcategory": "shampoo",
+    "description": "Sulfate-free shampoo for shine and gentle cleansing.",
+    "price": 27,
+    "gender": "unisex",
+    "activity": [
+      "haircare"
+    ],
+    "fit": "regular",
+    "material": "liquid",
+    "color": "clear",
+    "season": [
+      "all"
+    ],
+    "tags": [
+      "sulfate-free",
+      "shine"
+    ],
+    "image_path": "/static/images/accessories.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "bea_011",
+    "name": "SilkRepair Conditioner",
+    "brand": "RootLab",
+    "category": "haircare",
+    "subcategory": "conditioner",
+    "description": "Lightweight conditioner to smooth and detangle.",
+    "price": 27,
+    "gender": "unisex",
+    "activity": [
+      "haircare"
+    ],
+    "fit": "regular",
+    "material": "cream",
+    "color": "white",
+    "season": [
+      "all"
+    ],
+    "tags": [
+      "detangle",
+      "smooth"
+    ],
+    "image_path": "/static/images/accessories.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "bea_012",
+    "name": "Scalp Reset Scrub",
+    "brand": "RootLab",
+    "category": "haircare",
+    "subcategory": "scalp-treatments",
+    "description": "Exfoliating scalp scrub for weekly buildup reset.",
+    "price": 29,
+    "gender": "unisex",
+    "activity": [
+      "haircare"
+    ],
+    "fit": "regular",
+    "material": "scrub",
+    "color": "mint",
+    "season": [
+      "all"
+    ],
+    "tags": [
+      "scalp-care",
+      "weekly"
+    ],
+    "image_path": "/static/images/accessories.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "bea_013",
+    "name": "Overnight Renewal Mask",
+    "brand": "DermaBloom",
+    "category": "skincare",
+    "subcategory": "masks",
+    "description": "Hydrating overnight mask for softer morning skin.",
+    "price": 36,
+    "gender": "unisex",
+    "activity": [
+      "night",
+      "skincare"
+    ],
+    "fit": "regular",
+    "material": "gel-cream",
+    "color": "lavender",
+    "season": [
+      "all"
+    ],
+    "tags": [
+      "overnight",
+      "hydrating"
+    ],
+    "image_path": "/static/images/accessories.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "bea_014",
+    "name": "CalmMist Toner",
+    "brand": "PureLeaf",
+    "category": "skincare",
+    "subcategory": "toners",
+    "description": "Alcohol-free toner that soothes and preps skin.",
+    "price": 23,
+    "gender": "unisex",
+    "activity": [
+      "daily",
+      "skincare"
+    ],
+    "fit": "regular",
+    "material": "water-based",
+    "color": "clear",
+    "season": [
+      "all"
+    ],
+    "tags": [
+      "soothing",
+      "prep"
+    ],
+    "image_path": "/static/images/accessories.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "bea_015",
+    "name": "Daily Glow Exfoliant",
+    "brand": "DermaBloom",
+    "category": "skincare",
+    "subcategory": "exfoliants",
+    "description": "Mild chemical exfoliant for smoother texture.",
+    "price": 31,
+    "gender": "unisex",
+    "activity": [
+      "night",
+      "skincare"
+    ],
+    "fit": "regular",
+    "material": "liquid",
+    "color": "clear",
+    "season": [
+      "all"
+    ],
+    "tags": [
+      "texture",
+      "gentle-acid"
+    ],
+    "image_path": "/static/images/accessories.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "bea_016",
+    "name": "AirTouch Dry Shampoo",
+    "brand": "RootLab",
+    "category": "haircare",
+    "subcategory": "dry-shampoo",
+    "description": "Oil-absorbing dry shampoo with invisible finish.",
+    "price": 21,
+    "gender": "unisex",
+    "activity": [
+      "haircare",
+      "travel"
+    ],
+    "fit": "regular",
+    "material": "powder spray",
+    "color": "white",
+    "season": [
+      "all"
+    ],
+    "tags": [
+      "refresh",
+      "no-residue"
+    ],
+    "image_path": "/static/images/accessories.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "bea_017",
+    "name": "Precision Blend Sponge",
+    "brand": "StudioGlow",
+    "category": "tools",
+    "subcategory": "sponges",
+    "description": "Soft makeup sponge for seamless liquid blending.",
+    "price": 12,
+    "gender": "unisex",
+    "activity": [
+      "makeup"
+    ],
+    "fit": "regular",
+    "material": "foam",
+    "color": "pink",
+    "season": [
+      "all"
+    ],
+    "tags": [
+      "blend",
+      "tool"
+    ],
+    "image_path": "/static/images/accessories.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "bea_018",
+    "name": "ProDetail Brush Set",
+    "brand": "StudioGlow",
+    "category": "tools",
+    "subcategory": "brush-sets",
+    "description": "Five-piece brush set for base, eyes, and detail work.",
+    "price": 42,
+    "gender": "unisex",
+    "activity": [
+      "makeup"
+    ],
+    "fit": "regular",
+    "material": "synthetic fibers",
+    "color": "black",
+    "season": [
+      "all"
+    ],
+    "tags": [
+      "brushes",
+      "set"
+    ],
+    "image_path": "/static/images/accessories.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "bea_019",
+    "name": "Travel Ritual Kit",
+    "brand": "PureLeaf",
+    "category": "sets",
+    "subcategory": "travel-kits",
+    "description": "TSA-friendly skincare set for weekend trips.",
+    "price": 39,
+    "gender": "unisex",
+    "activity": [
+      "travel",
+      "skincare"
+    ],
+    "fit": "compact",
+    "material": "mixed",
+    "color": "multi",
+    "season": [
+      "all"
+    ],
+    "tags": [
+      "travel",
+      "kit"
+    ],
+    "image_path": "/static/images/accessories.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "bea_020",
+    "name": "Night Repair Eye Cream",
+    "brand": "DermaBloom",
+    "category": "skincare",
+    "subcategory": "eye-care",
+    "description": "Peptide-rich eye cream for overnight hydration.",
+    "price": 35,
+    "gender": "unisex",
+    "activity": [
+      "night",
+      "skincare"
+    ],
+    "fit": "regular",
+    "material": "cream",
+    "color": "ivory",
+    "season": [
+      "all"
+    ],
+    "tags": [
+      "peptides",
+      "hydration"
+    ],
+    "image_path": "/static/images/accessories.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  }
+]

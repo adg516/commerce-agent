@@ -1,0 +1,688 @@
+[
+  {
+    "id": "home_001",
+    "name": "Oakline Dining Set",
+    "brand": "HearthCo",
+    "category": "furniture",
+    "subcategory": "dining",
+    "description": "Modern 4-seat dining set with durable finish and easy-clean surface.",
+    "price": 699,
+    "gender": "unisex",
+    "activity": [
+      "dining",
+      "home"
+    ],
+    "fit": "regular",
+    "material": "oak wood",
+    "color": "walnut",
+    "season": [
+      "all"
+    ],
+    "tags": [
+      "family",
+      "durable"
+    ],
+    "image_path": "/static/images/outerwear.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "home_002",
+    "name": "CloudRest Sofa 3-Seater",
+    "brand": "NestForm",
+    "category": "furniture",
+    "subcategory": "sofas",
+    "description": "Comfort-first sofa with deep cushions and stain-resistant weave.",
+    "price": 1099,
+    "gender": "unisex",
+    "activity": [
+      "lounging",
+      "home"
+    ],
+    "fit": "regular",
+    "material": "performance fabric",
+    "color": "sand",
+    "season": [
+      "all"
+    ],
+    "tags": [
+      "comfort",
+      "living-room"
+    ],
+    "image_path": "/static/images/outerwear.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "home_003",
+    "name": "ChefCore Pan Set",
+    "brand": "CookSmith",
+    "category": "cookware",
+    "subcategory": "pan-sets",
+    "description": "Non-stick cookware set with induction compatibility.",
+    "price": 189,
+    "gender": "unisex",
+    "activity": [
+      "cooking"
+    ],
+    "fit": "regular",
+    "material": "hard-anodized aluminum",
+    "color": "black",
+    "season": [
+      "all"
+    ],
+    "tags": [
+      "non-stick",
+      "induction"
+    ],
+    "image_path": "/static/images/accessories.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "home_004",
+    "name": "PureBrew Kettle",
+    "brand": "CookSmith",
+    "category": "appliances",
+    "subcategory": "kettles",
+    "description": "Electric gooseneck kettle with precise temperature presets.",
+    "price": 89,
+    "gender": "unisex",
+    "activity": [
+      "coffee",
+      "tea"
+    ],
+    "fit": "compact",
+    "material": "stainless steel",
+    "color": "matte black",
+    "season": [
+      "all"
+    ],
+    "tags": [
+      "precision",
+      "electric"
+    ],
+    "image_path": "/static/images/accessories.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "home_005",
+    "name": "FreshKeep Container Kit",
+    "brand": "PantryPro",
+    "category": "storage",
+    "subcategory": "food-storage",
+    "description": "Airtight stackable food containers for pantry organization.",
+    "price": 49,
+    "gender": "unisex",
+    "activity": [
+      "organizing"
+    ],
+    "fit": "regular",
+    "material": "bpa-free plastic",
+    "color": "clear",
+    "season": [
+      "all"
+    ],
+    "tags": [
+      "airtight",
+      "stackable"
+    ],
+    "image_path": "/static/images/accessories.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "home_006",
+    "name": "LumenGlow Floor Lamp",
+    "brand": "BrightNest",
+    "category": "lighting",
+    "subcategory": "floor-lamps",
+    "description": "Dimmable floor lamp with warm-to-cool light modes.",
+    "price": 129,
+    "gender": "unisex",
+    "activity": [
+      "home",
+      "reading"
+    ],
+    "fit": "regular",
+    "material": "steel",
+    "color": "white",
+    "season": [
+      "all"
+    ],
+    "tags": [
+      "dimmable",
+      "ambient"
+    ],
+    "image_path": "/static/images/outerwear.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "home_007",
+    "name": "SleepEase Memory Pillow",
+    "brand": "Restory",
+    "category": "bedding",
+    "subcategory": "pillows",
+    "description": "Contour memory foam pillow for neck alignment.",
+    "price": 69,
+    "gender": "unisex",
+    "activity": [
+      "sleep"
+    ],
+    "fit": "regular",
+    "material": "memory foam",
+    "color": "white",
+    "season": [
+      "all"
+    ],
+    "tags": [
+      "ergonomic",
+      "sleep"
+    ],
+    "image_path": "/static/images/accessories.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "home_008",
+    "name": "AromaMist Diffuser",
+    "brand": "ZenAura",
+    "category": "decor",
+    "subcategory": "diffusers",
+    "description": "Ultrasonic aroma diffuser with quiet operation and timer modes.",
+    "price": 39,
+    "gender": "unisex",
+    "activity": [
+      "relaxation"
+    ],
+    "fit": "compact",
+    "material": "polypropylene",
+    "color": "stone",
+    "season": [
+      "all"
+    ],
+    "tags": [
+      "quiet",
+      "relax"
+    ],
+    "image_path": "/static/images/accessories.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "home_009",
+    "name": "GraniteServe Dinnerware",
+    "brand": "HearthCo",
+    "category": "dining",
+    "subcategory": "dinnerware",
+    "description": "16-piece stoneware dinner set for everyday meals.",
+    "price": 99,
+    "gender": "unisex",
+    "activity": [
+      "dining"
+    ],
+    "fit": "regular",
+    "material": "stoneware",
+    "color": "slate",
+    "season": [
+      "all"
+    ],
+    "tags": [
+      "dishwasher-safe",
+      "set"
+    ],
+    "image_path": "/static/images/accessories.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "home_010",
+    "name": "SmartSteam Iron",
+    "brand": "HomePulse",
+    "category": "appliances",
+    "subcategory": "irons",
+    "description": "Steam iron with anti-drip and auto shut-off.",
+    "price": 59,
+    "gender": "unisex",
+    "activity": [
+      "laundry"
+    ],
+    "fit": "compact",
+    "material": "ceramic steel",
+    "color": "blue",
+    "season": [
+      "all"
+    ],
+    "tags": [
+      "steam",
+      "safe"
+    ],
+    "image_path": "/static/images/accessories.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "home_011",
+    "name": "FoldMate Laundry Rack",
+    "brand": "HomePulse",
+    "category": "laundry",
+    "subcategory": "drying-racks",
+    "description": "Space-saving foldable drying rack for indoor use.",
+    "price": 44,
+    "gender": "unisex",
+    "activity": [
+      "laundry"
+    ],
+    "fit": "regular",
+    "material": "steel",
+    "color": "silver",
+    "season": [
+      "all"
+    ],
+    "tags": [
+      "foldable",
+      "space-saving"
+    ],
+    "image_path": "/static/images/outerwear.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "home_012",
+    "name": "CedarStack Shelf Unit",
+    "brand": "NestForm",
+    "category": "furniture",
+    "subcategory": "shelving",
+    "description": "Open shelf unit for books, plants, and office storage.",
+    "price": 179,
+    "gender": "unisex",
+    "activity": [
+      "organizing"
+    ],
+    "fit": "regular",
+    "material": "cedar wood",
+    "color": "natural",
+    "season": [
+      "all"
+    ],
+    "tags": [
+      "storage",
+      "display"
+    ],
+    "image_path": "/static/images/outerwear.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "home_013",
+    "name": "QuietBlend Blender",
+    "brand": "CookSmith",
+    "category": "appliances",
+    "subcategory": "blenders",
+    "description": "High-speed blender with low-noise housing and pulse mode.",
+    "price": 149,
+    "gender": "unisex",
+    "activity": [
+      "cooking"
+    ],
+    "fit": "regular",
+    "material": "tritan steel",
+    "color": "black",
+    "season": [
+      "all"
+    ],
+    "tags": [
+      "quiet",
+      "smoothies"
+    ],
+    "image_path": "/static/images/accessories.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "home_014",
+    "name": "AirPure HEPA 300",
+    "brand": "BreatheWell",
+    "category": "appliances",
+    "subcategory": "air-purifiers",
+    "description": "HEPA purifier designed for medium rooms and allergy relief.",
+    "price": 229,
+    "gender": "unisex",
+    "activity": [
+      "home"
+    ],
+    "fit": "regular",
+    "material": "composite",
+    "color": "white",
+    "season": [
+      "all"
+    ],
+    "tags": [
+      "hepa",
+      "allergy"
+    ],
+    "image_path": "/static/images/accessories.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "home_015",
+    "name": "CrispCotton Sheet Set",
+    "brand": "Restory",
+    "category": "bedding",
+    "subcategory": "sheet-sets",
+    "description": "Breathable cotton sateen sheet set with deep pockets.",
+    "price": 89,
+    "gender": "unisex",
+    "activity": [
+      "sleep"
+    ],
+    "fit": "regular",
+    "material": "cotton",
+    "color": "sage",
+    "season": [
+      "all"
+    ],
+    "tags": [
+      "breathable",
+      "soft"
+    ],
+    "image_path": "/static/images/accessories.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "home_016",
+    "name": "StoneBoard Cutting Set",
+    "brand": "CookSmith",
+    "category": "kitchen-tools",
+    "subcategory": "cutting-boards",
+    "description": "Three-piece anti-slip cutting board set for meal prep.",
+    "price": 39,
+    "gender": "unisex",
+    "activity": [
+      "cooking"
+    ],
+    "fit": "regular",
+    "material": "composite",
+    "color": "charcoal",
+    "season": [
+      "all"
+    ],
+    "tags": [
+      "prep",
+      "durable"
+    ],
+    "image_path": "/static/images/accessories.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "home_017",
+    "name": "EntryEase Shoe Bench",
+    "brand": "HearthCo",
+    "category": "furniture",
+    "subcategory": "entryway",
+    "description": "Bench with hidden shoe storage for clean entryways.",
+    "price": 159,
+    "gender": "unisex",
+    "activity": [
+      "organizing"
+    ],
+    "fit": "regular",
+    "material": "engineered wood",
+    "color": "oak",
+    "season": [
+      "all"
+    ],
+    "tags": [
+      "entryway",
+      "storage"
+    ],
+    "image_path": "/static/images/outerwear.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "home_018",
+    "name": "GlowFrame Wall Mirror",
+    "brand": "BrightNest",
+    "category": "decor",
+    "subcategory": "mirrors",
+    "description": "Large wall mirror to brighten and open up spaces.",
+    "price": 119,
+    "gender": "unisex",
+    "activity": [
+      "decor"
+    ],
+    "fit": "regular",
+    "material": "glass steel",
+    "color": "black",
+    "season": [
+      "all"
+    ],
+    "tags": [
+      "decor",
+      "light"
+    ],
+    "image_path": "/static/images/outerwear.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "home_019",
+    "name": "MealPrep Glass Boxes",
+    "brand": "PantryPro",
+    "category": "storage",
+    "subcategory": "meal-prep",
+    "description": "Glass containers with locking lids for weekly meal prep.",
+    "price": 59,
+    "gender": "unisex",
+    "activity": [
+      "organizing",
+      "cooking"
+    ],
+    "fit": "regular",
+    "material": "borosilicate glass",
+    "color": "clear",
+    "season": [
+      "all"
+    ],
+    "tags": [
+      "meal-prep",
+      "microwave-safe"
+    ],
+    "image_path": "/static/images/accessories.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "home_020",
+    "name": "NestHeat Throw Blanket",
+    "brand": "Restory",
+    "category": "bedding",
+    "subcategory": "throws",
+    "description": "Ultra-soft throw blanket for couches and reading nooks.",
+    "price": 49,
+    "gender": "unisex",
+    "activity": [
+      "lounging"
+    ],
+    "fit": "regular",
+    "material": "microfiber",
+    "color": "dusty rose",
+    "season": [
+      "fall",
+      "winter"
+    ],
+    "tags": [
+      "cozy",
+      "soft"
+    ],
+    "image_path": "/static/images/accessories.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  }
+]

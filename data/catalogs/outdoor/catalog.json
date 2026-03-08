@@ -1,0 +1,701 @@
+[
+  {
+    "id": "out_001",
+    "name": "SummitLite Tent 2P",
+    "brand": "AeroTrail",
+    "category": "shelter",
+    "subcategory": "tents",
+    "description": "Two-person lightweight backpacking tent with quick-pitch frame.",
+    "price": 289,
+    "gender": "unisex",
+    "activity": [
+      "camping",
+      "hiking"
+    ],
+    "fit": "regular",
+    "material": "ripstop nylon",
+    "color": "forest green",
+    "season": [
+      "spring",
+      "summer",
+      "fall"
+    ],
+    "tags": [
+      "lightweight",
+      "backpacking"
+    ],
+    "image_path": "/static/images/outerwear.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "out_002",
+    "name": "RidgeCamp Tent 4P",
+    "brand": "NorthArc",
+    "category": "shelter",
+    "subcategory": "tents",
+    "description": "Spacious family camping tent with weather-ready fly.",
+    "price": 369,
+    "gender": "unisex",
+    "activity": [
+      "camping"
+    ],
+    "fit": "regular",
+    "material": "polyester",
+    "color": "sand",
+    "season": [
+      "spring",
+      "summer",
+      "fall"
+    ],
+    "tags": [
+      "family",
+      "weather-resistant"
+    ],
+    "image_path": "/static/images/outerwear.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "out_003",
+    "name": "TrailFlow Backpack 35L",
+    "brand": "AeroTrail",
+    "category": "packs",
+    "subcategory": "backpacks",
+    "description": "Versatile day-hike pack with ventilated back panel.",
+    "price": 139,
+    "gender": "unisex",
+    "activity": [
+      "hiking",
+      "travel"
+    ],
+    "fit": "regular",
+    "material": "recycled nylon",
+    "color": "black",
+    "season": [
+      "all"
+    ],
+    "tags": [
+      "ventilated",
+      "daypack"
+    ],
+    "image_path": "/static/images/bottoms.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "out_004",
+    "name": "AlpineHaul Pack 60L",
+    "brand": "NorthArc",
+    "category": "packs",
+    "subcategory": "backpacks",
+    "description": "Long-haul trekking backpack with adjustable frame.",
+    "price": 229,
+    "gender": "unisex",
+    "activity": [
+      "hiking",
+      "camping"
+    ],
+    "fit": "regular",
+    "material": "ripstop nylon",
+    "color": "charcoal",
+    "season": [
+      "all"
+    ],
+    "tags": [
+      "trekking",
+      "load-support"
+    ],
+    "image_path": "/static/images/bottoms.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "out_005",
+    "name": "HeatCore Sleeping Bag",
+    "brand": "CampForge",
+    "category": "sleep",
+    "subcategory": "sleeping-bags",
+    "description": "Three-season sleeping bag with synthetic insulation.",
+    "price": 159,
+    "gender": "unisex",
+    "activity": [
+      "camping"
+    ],
+    "fit": "regular",
+    "material": "polyester fill",
+    "color": "blue",
+    "season": [
+      "spring",
+      "summer",
+      "fall"
+    ],
+    "tags": [
+      "3-season",
+      "warm"
+    ],
+    "image_path": "/static/images/accessories.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "out_006",
+    "name": "FrostGuard Sleeping Bag",
+    "brand": "CampForge",
+    "category": "sleep",
+    "subcategory": "sleeping-bags",
+    "description": "Cold-weather sleeping bag rated for winter nights.",
+    "price": 229,
+    "gender": "unisex",
+    "activity": [
+      "camping"
+    ],
+    "fit": "regular",
+    "material": "down blend",
+    "color": "navy",
+    "season": [
+      "winter"
+    ],
+    "tags": [
+      "winter",
+      "insulated"
+    ],
+    "image_path": "/static/images/accessories.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "out_007",
+    "name": "PeakFlame Stove",
+    "brand": "WildCook",
+    "category": "camp-kitchen",
+    "subcategory": "stoves",
+    "description": "Compact camp stove with stable burner and fast boil.",
+    "price": 79,
+    "gender": "unisex",
+    "activity": [
+      "camping"
+    ],
+    "fit": "compact",
+    "material": "steel",
+    "color": "gray",
+    "season": [
+      "all"
+    ],
+    "tags": [
+      "portable",
+      "fast-boil"
+    ],
+    "image_path": "/static/images/accessories.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "out_008",
+    "name": "SummitCook Pot Set",
+    "brand": "WildCook",
+    "category": "camp-kitchen",
+    "subcategory": "cookware",
+    "description": "Nestable camp cookware set for trail meals.",
+    "price": 69,
+    "gender": "unisex",
+    "activity": [
+      "camping"
+    ],
+    "fit": "compact",
+    "material": "anodized aluminum",
+    "color": "silver",
+    "season": [
+      "all"
+    ],
+    "tags": [
+      "nestable",
+      "lightweight"
+    ],
+    "image_path": "/static/images/accessories.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "out_009",
+    "name": "GraniteGrip Trek Poles",
+    "brand": "AeroTrail",
+    "category": "hiking-gear",
+    "subcategory": "trekking-poles",
+    "description": "Adjustable trekking poles for stability on climbs.",
+    "price": 89,
+    "gender": "unisex",
+    "activity": [
+      "hiking"
+    ],
+    "fit": "regular",
+    "material": "carbon aluminum",
+    "color": "black",
+    "season": [
+      "all"
+    ],
+    "tags": [
+      "stability",
+      "adjustable"
+    ],
+    "image_path": "/static/images/accessories.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "out_010",
+    "name": "RiverTrail Sandals",
+    "brand": "StridePeak",
+    "category": "footwear",
+    "subcategory": "sandals",
+    "description": "Quick-dry outdoor sandals with textured grip.",
+    "price": 74,
+    "gender": "unisex",
+    "activity": [
+      "hiking",
+      "travel"
+    ],
+    "fit": "regular",
+    "material": "synthetic rubber",
+    "color": "olive",
+    "season": [
+      "summer"
+    ],
+    "tags": [
+      "quick-dry",
+      "grip"
+    ],
+    "image_path": "/static/images/footwear.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "out_011",
+    "name": "RockLine Approach Shoe",
+    "brand": "StridePeak",
+    "category": "footwear",
+    "subcategory": "approach-shoes",
+    "description": "Low-profile shoe with sticky outsole for rocky trails.",
+    "price": 124,
+    "gender": "unisex",
+    "activity": [
+      "hiking",
+      "climbing"
+    ],
+    "fit": "regular",
+    "material": "mesh suede",
+    "color": "graphite",
+    "season": [
+      "all"
+    ],
+    "tags": [
+      "traction",
+      "approach"
+    ],
+    "image_path": "/static/images/footwear.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "out_012",
+    "name": "StormShell Rain Jacket",
+    "brand": "NorthArc",
+    "category": "outerwear",
+    "subcategory": "rain-jackets",
+    "description": "Packable waterproof shell for sudden weather changes.",
+    "price": 149,
+    "gender": "unisex",
+    "activity": [
+      "hiking",
+      "travel"
+    ],
+    "fit": "regular",
+    "material": "laminated nylon",
+    "color": "teal",
+    "season": [
+      "spring",
+      "fall"
+    ],
+    "tags": [
+      "waterproof",
+      "packable"
+    ],
+    "image_path": "/static/images/outerwear.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "out_013",
+    "name": "CanyonSun Hat",
+    "brand": "AeroTrail",
+    "category": "accessories",
+    "subcategory": "hats",
+    "description": "Wide-brim sun hat with breathable mesh vents.",
+    "price": 34,
+    "gender": "unisex",
+    "activity": [
+      "hiking",
+      "travel"
+    ],
+    "fit": "regular",
+    "material": "nylon",
+    "color": "sand",
+    "season": [
+      "summer"
+    ],
+    "tags": [
+      "sun-protection",
+      "breathable"
+    ],
+    "image_path": "/static/images/accessories.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "out_014",
+    "name": "TrailHydro Flask 1L",
+    "brand": "CampForge",
+    "category": "hydration",
+    "subcategory": "bottles",
+    "description": "Insulated bottle that keeps drinks cold on long hikes.",
+    "price": 39,
+    "gender": "unisex",
+    "activity": [
+      "hiking",
+      "camping"
+    ],
+    "fit": "regular",
+    "material": "stainless steel",
+    "color": "blue",
+    "season": [
+      "all"
+    ],
+    "tags": [
+      "insulated",
+      "durable"
+    ],
+    "image_path": "/static/images/accessories.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "out_015",
+    "name": "NightBeam Headlamp",
+    "brand": "NorthArc",
+    "category": "lighting",
+    "subcategory": "headlamps",
+    "description": "Rechargeable headlamp with flood and spotlight modes.",
+    "price": 49,
+    "gender": "unisex",
+    "activity": [
+      "camping",
+      "hiking"
+    ],
+    "fit": "compact",
+    "material": "polymer",
+    "color": "black",
+    "season": [
+      "all"
+    ],
+    "tags": [
+      "rechargeable",
+      "night-hike"
+    ],
+    "image_path": "/static/images/accessories.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "out_016",
+    "name": "CampRest Sleeping Pad",
+    "brand": "CampForge",
+    "category": "sleep",
+    "subcategory": "sleeping-pads",
+    "description": "Inflatable sleeping pad with compact packed size.",
+    "price": 99,
+    "gender": "unisex",
+    "activity": [
+      "camping"
+    ],
+    "fit": "regular",
+    "material": "ripstop nylon",
+    "color": "orange",
+    "season": [
+      "all"
+    ],
+    "tags": [
+      "inflatable",
+      "compact"
+    ],
+    "image_path": "/static/images/accessories.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "out_017",
+    "name": "BoulderGrip Gloves",
+    "brand": "AeroTrail",
+    "category": "accessories",
+    "subcategory": "gloves",
+    "description": "Durable gloves for rope handling and chilly mornings.",
+    "price": 29,
+    "gender": "unisex",
+    "activity": [
+      "climbing",
+      "hiking"
+    ],
+    "fit": "fitted",
+    "material": "synthetic leather",
+    "color": "black",
+    "season": [
+      "fall",
+      "winter"
+    ],
+    "tags": [
+      "grip",
+      "durable"
+    ],
+    "image_path": "/static/images/accessories.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "out_018",
+    "name": "TrailMap GPS Beacon",
+    "brand": "NorthArc",
+    "category": "navigation",
+    "subcategory": "gps",
+    "description": "Compact emergency beacon with GPS tracking and SOS.",
+    "price": 199,
+    "gender": "unisex",
+    "activity": [
+      "hiking",
+      "camping"
+    ],
+    "fit": "compact",
+    "material": "polycarbonate",
+    "color": "orange",
+    "season": [
+      "all"
+    ],
+    "tags": [
+      "safety",
+      "gps"
+    ],
+    "image_path": "/static/images/accessories.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "out_019",
+    "name": "SummitChair Foldable",
+    "brand": "CampForge",
+    "category": "camp-furniture",
+    "subcategory": "chairs",
+    "description": "Lightweight foldable camping chair with cup holder.",
+    "price": 59,
+    "gender": "unisex",
+    "activity": [
+      "camping"
+    ],
+    "fit": "regular",
+    "material": "aluminum fabric",
+    "color": "forest",
+    "season": [
+      "all"
+    ],
+    "tags": [
+      "foldable",
+      "comfort"
+    ],
+    "image_path": "/static/images/outerwear.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "out_020",
+    "name": "BaseCamp Table Lite",
+    "brand": "CampForge",
+    "category": "camp-furniture",
+    "subcategory": "tables",
+    "description": "Portable camping table with quick setup legs.",
+    "price": 79,
+    "gender": "unisex",
+    "activity": [
+      "camping"
+    ],
+    "fit": "regular",
+    "material": "aluminum",
+    "color": "silver",
+    "season": [
+      "all"
+    ],
+    "tags": [
+      "portable",
+      "quick-setup"
+    ],
+    "image_path": "/static/images/outerwear.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  }
+]

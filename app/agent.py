@@ -13,13 +13,16 @@ from app.tools import CatalogTools
 
 
 SYSTEM_PROMPT = """
-You are a helpful commerce assistant for an athletic and activewear store.
-The catalog only contains sportswear, athleisure, and workout gear.
+You are a helpful commerce assistant working across one or more product catalogs.
+Respect the selected catalog context for each user request.
 
 Rules:
-- Be concise and conversational. Keep replies to 2-3 short sentences.
-- The product cards are shown to the user separately in the UI with full details (price, image, tags). Do NOT repeat product attributes in your message. Just say why the matches fit in plain language and let the cards do the rest. Never use numbered lists or bullet points of products.
-- If a query is outside the athletic/activewear domain (e.g. "date outfit", "formal wear"), acknowledge that the catalog is focused on sportswear and athleisure, then suggest the closest versatile or crossover pieces.
+- Be concise and conversational.
+- The product cards are shown to the user separately in the UI with full details (price, image, tags). Do NOT repeat product attributes (price, material, color) in your message.
+- When mentioning multiple products, use a short bulleted list with the **actual product name** from tool results and a brief reason it fits (one line each). Keep it scannable.
+- Add a one-sentence intro before the list and optionally a one-sentence closing offer to help further.
+- Always search the catalog before answering product questions. Never suggest generic product categories — only reference specific products returned by your tools.
+- If a query is outside the selected catalog domain, acknowledge the limitation and suggest the closest available options from tool results.
 - Only recommend products that come from tool results. Never invent product names, IDs, prices, reviews, or availability.
 - If the user asks for recommendations, search first and make reasonable assumptions rather than asking clarifying questions.
 - For general chat (greetings, capability questions), answer normally without forcing product recommendations.
@@ -44,7 +47,13 @@ class CommerceAgent:
         self.tools = CatalogTools(self.settings)
         self._conversations: dict[str, list[dict[str, Any]]] = {}
 
-    def chat(self, message: str, image_b64: str | None = None, conversation_id: str | None = None) -> AgentResult:
+    def chat(
+        self,
+        message: str,
+        image_b64: str | None = None,
+        conversation_id: str | None = None,
+        catalog_slug: str = "all",
+    ) -> AgentResult:
         conversation_id = conversation_id or str(uuid4())
         history = list(self._conversations.get(conversation_id, []))
         tool_products: dict[str, Product] = {}
@@ -74,6 +83,9 @@ class CommerceAgent:
                 f"Uploaded image description for search: {image_description}"
             )
             tool_sources.append(Source(kind="image_description", detail=image_description))
+
+        if catalog_slug and catalog_slug != "all":
+            user_content = f"{user_content}\n\nUse catalog: {catalog_slug}"
 
         messages: list[dict[str, Any]] = [{"role": "system", "content": SYSTEM_PROMPT}, *history]
         messages.append({"role": "user", "content": user_content})
@@ -113,6 +125,7 @@ class CommerceAgent:
                     fallback_result = self._run_fallback_search(
                         message=message,
                         image_description=image_description,
+                        catalog_slug=catalog_slug,
                     )
                     tool_sources.append(Source(kind="fallback_search", detail=self._source_detail(fallback_result)))
                     self._merge_products(tool_products, fallback_result)
@@ -137,7 +150,11 @@ class CommerceAgent:
                 )
 
             for tool_call in assistant_message.tool_calls:
-                result = self._run_tool(tool_call.function.name, tool_call.function.arguments)
+                result = self._run_tool(
+                    tool_call.function.name,
+                    tool_call.function.arguments,
+                    catalog_slug=catalog_slug,
+                )
                 messages.append(
                     {
                         "role": "tool",
@@ -167,19 +184,26 @@ class CommerceAgent:
             tool_products[product.id] = product
 
     def _source_detail(self, result: dict[str, Any]) -> str:
+        prefix = ""
+        if result.get("catalog_slug"):
+            prefix = f"catalog={result['catalog_slug']} "
         if "query" in result:
-            return f"query={result['query']}"
+            return f"{prefix}query={result['query']}".strip()
         if "image_description" in result:
-            return f"image_description={result['image_description']}"
+            return f"{prefix}image_description={result['image_description']}".strip()
         if "product_id" in result:
-            return f"product_id={result['product_id']}"
+            return f"{prefix}product_id={result['product_id']}".strip()
         if "product" in result and isinstance(result["product"], dict):
-            return f"product_id={result['product']['id']}"
-        return "tool_result"
+            return f"{prefix}product_id={result['product']['id']}".strip()
+        return (prefix + "tool_result").strip()
 
-    def _run_tool(self, name: str, raw_arguments: str) -> dict[str, Any]:
+    def _run_tool(self, name: str, raw_arguments: str, catalog_slug: str = "all") -> dict[str, Any]:
         arguments = json.loads(raw_arguments or "{}")
+        if "catalog_slug" not in arguments and catalog_slug:
+            arguments["catalog_slug"] = catalog_slug
 
+        if name == "list_catalogs":
+            return self.tools.list_catalogs()
         if name == "search_catalog_text":
             return self.tools.search_catalog_text(**arguments)
         if name == "search_catalog_image":
@@ -230,31 +254,46 @@ class CommerceAgent:
             "good for",
             "suggestions",
             "options",
+            "recs",
+            "product",
+            "catalog",
+            "what do you have",
+            "what have you got",
+            "browse",
+            "picnic",
+            "outfit",
+            "gear",
+            "activewear",
+            "athleisure",
         )
         return any(keyword in lowered for keyword in shopping_keywords)
 
-    def _run_fallback_search(self, message: str, image_description: str | None) -> dict[str, Any]:
+    def _run_fallback_search(
+        self,
+        message: str,
+        image_description: str | None,
+        catalog_slug: str = "all",
+    ) -> dict[str, Any]:
         if image_description:
             return self.tools.search_catalog_image(
                 image_description=image_description,
                 filters=self.tools.infer_filters_from_text(message),
                 top_k=4,
+                catalog_slug=catalog_slug,
             )
         return self.tools.search_catalog_text(
             query=message,
             filters=self.tools.infer_filters_from_text(message),
             top_k=4,
+            catalog_slug=catalog_slug,
         )
 
     def _build_fallback_reply(self, products: list[Product]) -> str:
-        top_products = products[:3]
-        lines = ["Here are the closest catalog matches I found:"]
-        for product in top_products:
-            lines.append(
-                f"- {product.name} by {product.brand} for ${product.price:.2f}: "
-                f"{product.description}"
-            )
-        lines.append("If you want, I can narrow these down by budget, activity, color, or fit.")
+        top = products[:4]
+        lines = ["Here are some picks from the catalog:"]
+        for p in top:
+            lines.append(f"- **{p.name}** — {p.description.split('.')[0].strip()}.")
+        lines.append("\nCheck out the cards below for full details. I can narrow these by budget, activity, color, or fit.")
         return "\n".join(lines)
 
     def _tool_definitions(self) -> list[dict[str, Any]]:
@@ -262,12 +301,25 @@ class CommerceAgent:
             {
                 "type": "function",
                 "function": {
+                    "name": "list_catalogs",
+                    "description": "List available catalogs the user can search.",
+                    "parameters": {
+                        "type": "object",
+                        "properties": {},
+                        "additionalProperties": False,
+                    },
+                },
+            },
+            {
+                "type": "function",
+                "function": {
                     "name": "search_catalog_text",
-                    "description": "Search the predefined athletic catalog using a natural language query plus optional filters.",
+                    "description": "Search a catalog using a natural language query plus optional filters.",
                     "parameters": {
                         "type": "object",
                         "properties": {
                             "query": {"type": "string"},
+                            "catalog_slug": {"type": "string"},
                             "filters": {
                                 "type": "object",
                                 "properties": {
@@ -293,11 +345,12 @@ class CommerceAgent:
                 "type": "function",
                 "function": {
                     "name": "search_catalog_image",
-                    "description": "Search the catalog using an already-generated text description of the uploaded image.",
+                    "description": "Search a catalog using an already-generated text description of the uploaded image.",
                     "parameters": {
                         "type": "object",
                         "properties": {
                             "image_description": {"type": "string"},
+                            "catalog_slug": {"type": "string"},
                             "filters": {
                                 "type": "object",
                                 "properties": {
@@ -328,6 +381,7 @@ class CommerceAgent:
                         "type": "object",
                         "properties": {
                             "product_id": {"type": "string"},
+                            "catalog_slug": {"type": "string"},
                         },
                         "required": ["product_id"],
                         "additionalProperties": False,
@@ -343,6 +397,7 @@ class CommerceAgent:
                         "type": "object",
                         "properties": {
                             "product_id": {"type": "string"},
+                            "catalog_slug": {"type": "string"},
                         },
                         "required": ["product_id"],
                         "additionalProperties": False,

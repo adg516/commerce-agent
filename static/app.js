@@ -6,6 +6,8 @@ const statusBadgeEl = document.getElementById("statusBadge");
 const chatFormEl = document.getElementById("chatForm");
 const messageInputEl = document.getElementById("messageInput");
 const imageInputEl = document.getElementById("imageInput");
+const catalogSelectEl = document.getElementById("catalogSelect");
+const catalogCsvInputEl = document.getElementById("catalogCsvInput");
 const imagePreviewEl = document.getElementById("imagePreview");
 const previewImgEl = document.getElementById("previewImg");
 const clearImageBtnEl = document.getElementById("clearImageBtn");
@@ -15,6 +17,7 @@ const sendButtonEl = document.getElementById("sendButton");
 let conversationId = self.crypto?.randomUUID?.()
   ?? (Date.now().toString(36) + Math.random().toString(36).slice(2));
 let selectedImageB64 = null;
+let selectedCatalog = "all";
 let isSubmitting = false;
 let autoScrollFrameId = null;
 let autoScrollStoppedByUser = false;
@@ -52,6 +55,46 @@ clearImageBtnEl.addEventListener("click", () => {
   imagePreviewEl.classList.add("hidden");
 });
 
+if (catalogSelectEl) {
+  catalogSelectEl.addEventListener("change", () => {
+    const value = catalogSelectEl.value;
+    if (value === "__upload_csv__") {
+      catalogSelectEl.value = selectedCatalog;
+      catalogCsvInputEl?.click();
+      return;
+    }
+    selectedCatalog = value || "all";
+  });
+}
+
+if (catalogCsvInputEl) {
+  catalogCsvInputEl.addEventListener("change", async (event) => {
+    const [file] = event.target.files || [];
+    if (!file) return;
+
+    try {
+      const formData = new FormData();
+      formData.append("file", file);
+      formData.append("name", file.name.replace(/\.csv$/i, ""));
+      const response = await fetch("/api/catalogs/upload", {
+        method: "POST",
+        body: formData,
+      });
+      if (!response.ok) {
+        throw new Error(`Upload failed: ${response.status}`);
+      }
+      const data = await response.json();
+      await loadCatalogs(data.catalog?.slug || "all");
+      appendMessage("assistant", `Uploaded catalog "${data.catalog?.name || "Imported Catalog"}" with ${data.count || 0} items.`, { useMarkdown: false });
+    } catch (error) {
+      console.error(error);
+      appendMessage("assistant", "CSV upload failed. Make sure the file is valid and try again.", { useMarkdown: false });
+    } finally {
+      catalogCsvInputEl.value = "";
+    }
+  });
+}
+
 chatFormEl.addEventListener("submit", async (event) => {
   event.preventDefault();
   if (isSubmitting) {
@@ -81,6 +124,7 @@ chatFormEl.addEventListener("submit", async (event) => {
         message,
         image_b64: selectedImageB64,
         conversation_id: conversationId,
+        catalog: selectedCatalog,
       }),
       signal: controller.signal,
     });
@@ -93,7 +137,10 @@ chatFormEl.addEventListener("submit", async (event) => {
     const data = await response.json();
     conversationId = data.conversation_id;
     renderSources(data.sources || []);
-    renderProducts(data.products || []);
+    const newProducts = data.products || [];
+    if (newProducts.length > 0) {
+      renderProducts(newProducts);
+    }
     await streamAssistantReply(assistantMessage.bubbleEl, data.reply || "");
     selectedImageB64 = null;
     imageInputEl.value = "";
@@ -120,6 +167,36 @@ function appendThinkingMessage() {
   messagesEl.appendChild(article);
   messagesEl.scrollTop = messagesEl.scrollHeight;
   return { articleEl: article, bubbleEl: article.querySelector(".bubble") };
+}
+
+async function loadCatalogs(preferred = "all") {
+  if (!catalogSelectEl) return;
+  try {
+    const response = await fetch("/api/catalogs");
+    if (!response.ok) {
+      return;
+    }
+    const data = await response.json();
+    const catalogs = Array.isArray(data.catalogs) ? data.catalogs : [];
+    catalogSelectEl.innerHTML = "";
+    for (const catalog of catalogs) {
+      const option = document.createElement("option");
+      option.value = catalog.slug;
+      option.textContent = catalog.name;
+      catalogSelectEl.appendChild(option);
+    }
+
+    const uploadOption = document.createElement("option");
+    uploadOption.value = "__upload_csv__";
+    uploadOption.textContent = "Upload CSV...";
+    catalogSelectEl.appendChild(uploadOption);
+
+    const available = catalogs.map((item) => item.slug);
+    selectedCatalog = available.includes(preferred) ? preferred : (available.includes(selectedCatalog) ? selectedCatalog : "all");
+    catalogSelectEl.value = selectedCatalog;
+  } catch (error) {
+    console.warn("Failed to load catalogs:", error);
+  }
 }
 
 function appendMessage(role, text, options = {}) {
@@ -499,3 +576,5 @@ if (typeof tsParticles !== "undefined") {
   console.warn("tsParticles global is missing.");
   startCanvasParticlesFallback();
 }
+
+loadCatalogs();

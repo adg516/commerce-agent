@@ -1,10 +1,13 @@
-.PHONY: run embed eval docker docker-run deploy port-forward
+.PHONY: run embed gen-catalogs eval docker docker-run deploy port-forward
 
 run:
 	uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
 
 embed:
-	python scripts/precompute.py
+	python scripts/precompute.py --catalog all
+
+gen-catalogs:
+	python scripts/generate_catalogs.py
 
 eval:
 	python evals/run_evals.py

@@ -1,12 +1,14 @@
 # Commerce Agent
 
-An AI-powered commerce assistant for a predefined athletic apparel catalog. The app supports:
+An AI-powered commerce assistant for multiple predefined catalogs. The app supports:
 
 - General chat about capabilities and shopping help
 - Text-based product recommendation and search
 - Image-based product search using GPT vision plus semantic retrieval
+- Catalog switching (`All Catalogs` or a specific catalog)
+- CSV catalog upload (best-effort parsing and indexing)
 
-The backend is FastAPI, the frontend is plain HTML/CSS/JS, and product grounding happens through tool calls against a local catalog file.
+The backend is FastAPI, the frontend is plain HTML/CSS/JS, and product grounding happens through tool calls against local catalog files.
 
 ## Why this design
 
@@ -62,7 +64,7 @@ k8s/          Deployment and service manifests for k3s
 
 ## Product schema
 
-Each product in `data/catalog.json` includes:
+Each product in `data/catalogs/<slug>/catalog.json` includes:
 
 - `id`, `name`, `brand`, `price`
 - `category`, `subcategory`
@@ -150,7 +152,8 @@ Request:
 {
   "message": "recommend trail shoes with grip under $120",
   "image_b64": null,
-  "conversation_id": "optional-uuid"
+  "conversation_id": "optional-uuid",
+  "catalog": "all"
 }
 ```
 
@@ -169,6 +172,14 @@ Response:
 ### `GET /api/products/{product_id}`
 
 Returns one product from the predefined catalog.
+
+### `GET /api/catalogs`
+
+Returns available catalogs including `"all"`.
+
+### `POST /api/catalogs/upload`
+
+Accepts a CSV file upload and adds it as a searchable catalog at runtime.
 
 ### `GET /api/health`
 

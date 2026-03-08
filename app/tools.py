@@ -6,23 +6,35 @@ from typing import Any
 import numpy as np
 from openai import OpenAI
 
-from app.catalog import get_catalog_store
+from app.catalog import build_embedding_text, get_catalog_registry
 from app.config import Settings, get_settings
+from app.models import Product
 
 
 class CatalogTools:
     def __init__(self, settings: Settings | None = None):
         self.settings = settings or get_settings()
-        self.catalog = get_catalog_store()
+        self.catalog_registry = get_catalog_registry()
         self.client = OpenAI(api_key=self.settings.openai_api_key) if self.settings.openai_api_key else None
 
-    def search_catalog_text(self, query: str, filters: dict[str, Any] | None = None, top_k: int = 5) -> dict[str, Any]:
+    def list_catalogs(self) -> dict[str, Any]:
+        catalogs = [{"slug": "all", "name": "All Catalogs"}, *self.catalog_registry.list_catalogs()]
+        return {"catalogs": catalogs}
+
+    def search_catalog_text(
+        self,
+        query: str,
+        filters: dict[str, Any] | None = None,
+        top_k: int = 5,
+        catalog_slug: str = "all",
+    ) -> dict[str, Any]:
         inferred_filters = self.infer_filters_from_text(query)
         merged_filters = dict(inferred_filters)
         if filters:
             merged_filters.update(filters)
         embedding = self._embed_text(query)
-        matches = self.catalog.search(
+        matches = self.catalog_registry.search(
+            catalog_slug=catalog_slug,
             query_embedding=embedding,
             query_text=query,
             filters=merged_filters,
@@ -31,14 +43,16 @@ class CatalogTools:
         # If the LLM supplied overly strict filters that produce no candidates,
         # relax in stages: inferred query filters first, then fully unfiltered.
         if not matches and filters and inferred_filters != merged_filters:
-            matches = self.catalog.search(
+            matches = self.catalog_registry.search(
+                catalog_slug=catalog_slug,
                 query_embedding=embedding,
                 query_text=query,
                 filters=inferred_filters,
                 top_k=top_k,
             )
         if not matches and (merged_filters or inferred_filters):
-            matches = self.catalog.search(
+            matches = self.catalog_registry.search(
+                catalog_slug=catalog_slug,
                 query_embedding=embedding,
                 query_text=query,
                 filters={},
@@ -47,6 +61,7 @@ class CatalogTools:
         return {
             "query": query,
             "filters": merged_filters,
+            "catalog_slug": catalog_slug,
             "matches": matches,
         }
 
@@ -55,6 +70,7 @@ class CatalogTools:
         image_description: str,
         filters: dict[str, Any] | None = None,
         top_k: int = 5,
+        catalog_slug: str = "all",
     ) -> dict[str, Any]:
         # A local CLIP/open_clip model could replace this text bridge by embedding
         # the raw image directly, but for this Pi-friendly take-home we keep the
@@ -63,7 +79,8 @@ class CatalogTools:
         if filters:
             merged_filters.update(filters)
         embedding = self._embed_text(image_description)
-        matches = self.catalog.search(
+        matches = self.catalog_registry.search(
+            catalog_slug=catalog_slug,
             query_embedding=embedding,
             query_text=image_description,
             filters=merged_filters,
@@ -72,20 +89,49 @@ class CatalogTools:
         return {
             "image_description": image_description,
             "filters": merged_filters,
+            "catalog_slug": catalog_slug,
             "matches": matches,
         }
 
-    def get_product(self, product_id: str) -> dict[str, Any]:
-        product = self.catalog.get_product(product_id)
+    def get_product(self, product_id: str, catalog_slug: str = "all") -> dict[str, Any]:
+        product = self.catalog_registry.get_product(product_id, catalog_slug=catalog_slug)
         if not product:
             return {"error": f"Unknown product_id: {product_id}"}
-        return {"product": product.model_dump()}
+        return {"product": product.model_dump(), "catalog_slug": catalog_slug}
 
-    def get_reviews(self, product_id: str) -> dict[str, Any]:
-        product = self.catalog.get_product(product_id)
+    def get_reviews(self, product_id: str, catalog_slug: str = "all") -> dict[str, Any]:
+        product = self.catalog_registry.get_product(product_id, catalog_slug=catalog_slug)
         if not product:
             return {"error": f"Unknown product_id: {product_id}"}
-        return {"product_id": product_id, "reviews": self.catalog.get_reviews(product_id)}
+        return {
+            "product_id": product_id,
+            "catalog_slug": catalog_slug,
+            "reviews": self.catalog_registry.get_reviews(product_id, catalog_slug=catalog_slug),
+        }
+
+    def register_uploaded_catalog(self, slug: str, products: list[dict[str, Any]]) -> dict[str, Any]:
+        catalog_path, embeddings_path = self.catalog_registry.save_uploaded_catalog(slug=slug, products=products)
+
+        embeddings = None
+        if self.client:
+            validated_products = [Product.model_validate(item) for item in products]
+            embedding_inputs = [build_embedding_text(product) for product in validated_products]
+            response = self.client.embeddings.create(
+                model=self.settings.openai_embedding_model,
+                input=embedding_inputs,
+            )
+            embeddings = np.asarray([item.embedding for item in response.data], dtype=float)
+
+        if embeddings is not None:
+            embeddings_path.parent.mkdir(parents=True, exist_ok=True)
+            np.save(embeddings_path, embeddings)
+
+        self.catalog_registry.register_uploaded_catalog(
+            slug=slug,
+            catalog_path=catalog_path,
+            embeddings_path=embeddings_path,
+        )
+        return {"slug": slug, "count": len(products)}
 
     def describe_image(self, image_b64: str, user_prompt: str = "") -> str:
         if not self.client:

@@ -12,8 +12,8 @@ class Settings(BaseSettings):
     openai_chat_model: str = "gpt-4o-mini"
     openai_vision_model: str = "gpt-4o-mini"
     openai_embedding_model: str = "text-embedding-3-small"
-    catalog_path: str = "data/catalog.json"
-    embeddings_path: str = "data/embeddings.npy"
+    catalogs_root: str = "data/catalogs"
+    default_catalog_slug: str = "athletic"
     host: str = "0.0.0.0"
     port: int = 8000
 
@@ -24,12 +24,16 @@ class Settings(BaseSettings):
     )
 
     @property
+    def resolved_catalogs_root(self) -> Path:
+        return BASE_DIR / self.catalogs_root
+
+    @property
     def resolved_catalog_path(self) -> Path:
-        return BASE_DIR / self.catalog_path
+        return self.resolved_catalogs_root / self.default_catalog_slug / "catalog.json"
 
     @property
     def resolved_embeddings_path(self) -> Path:
-        return BASE_DIR / self.embeddings_path
+        return self.resolved_catalogs_root / self.default_catalog_slug / "embeddings.npy"
 
 
 @lru_cache(maxsize=1)

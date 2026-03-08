@@ -1,0 +1,697 @@
+[
+  {
+    "id": "elec_001",
+    "name": "Nimbus Pro Laptop 14",
+    "brand": "CircuitOne",
+    "category": "computers",
+    "subcategory": "laptops",
+    "description": "Compact 14-inch laptop tuned for productivity and travel.",
+    "price": 1299,
+    "gender": "unisex",
+    "activity": [
+      "work",
+      "travel"
+    ],
+    "fit": "portable",
+    "material": "aluminum",
+    "color": "silver",
+    "season": [
+      "all"
+    ],
+    "tags": [
+      "lightweight",
+      "battery-life"
+    ],
+    "image_path": "/static/images/footwear.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "elec_002",
+    "name": "AeroBook Lite 13",
+    "brand": "VoltEdge",
+    "category": "computers",
+    "subcategory": "laptops",
+    "description": "Everyday ultrabook with efficient performance for students and remote teams.",
+    "price": 899,
+    "gender": "unisex",
+    "activity": [
+      "work",
+      "study"
+    ],
+    "fit": "portable",
+    "material": "aluminum",
+    "color": "space gray",
+    "season": [
+      "all"
+    ],
+    "tags": [
+      "everyday",
+      "portable"
+    ],
+    "image_path": "/static/images/footwear.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "elec_003",
+    "name": "PixelPulse Phone X",
+    "brand": "NovaMobile",
+    "category": "phones",
+    "subcategory": "smartphones",
+    "description": "Flagship smartphone with bright display and fast camera pipeline.",
+    "price": 999,
+    "gender": "unisex",
+    "activity": [
+      "daily",
+      "travel"
+    ],
+    "fit": "slim",
+    "material": "glass aluminum",
+    "color": "black",
+    "season": [
+      "all"
+    ],
+    "tags": [
+      "camera",
+      "premium"
+    ],
+    "image_path": "/static/images/accessories.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "elec_004",
+    "name": "PixelPulse Phone SE",
+    "brand": "NovaMobile",
+    "category": "phones",
+    "subcategory": "smartphones",
+    "description": "Value-focused smartphone with all-day battery and clean software.",
+    "price": 549,
+    "gender": "unisex",
+    "activity": [
+      "daily"
+    ],
+    "fit": "slim",
+    "material": "aluminum",
+    "color": "blue",
+    "season": [
+      "all"
+    ],
+    "tags": [
+      "value",
+      "battery"
+    ],
+    "image_path": "/static/images/accessories.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "elec_005",
+    "name": "EchoWave ANC Headphones",
+    "brand": "SoundArc",
+    "category": "audio",
+    "subcategory": "headphones",
+    "description": "Over-ear ANC headphones for commuting and focused work.",
+    "price": 249,
+    "gender": "unisex",
+    "activity": [
+      "commute",
+      "work"
+    ],
+    "fit": "over-ear",
+    "material": "composite",
+    "color": "black",
+    "season": [
+      "all"
+    ],
+    "tags": [
+      "anc",
+      "wireless"
+    ],
+    "image_path": "/static/images/accessories.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "elec_006",
+    "name": "EchoWave Mini Buds",
+    "brand": "SoundArc",
+    "category": "audio",
+    "subcategory": "earbuds",
+    "description": "Pocketable earbuds with clear calls and stable Bluetooth pairing.",
+    "price": 119,
+    "gender": "unisex",
+    "activity": [
+      "daily",
+      "gym"
+    ],
+    "fit": "in-ear",
+    "material": "polycarbonate",
+    "color": "white",
+    "season": [
+      "all"
+    ],
+    "tags": [
+      "wireless",
+      "calls"
+    ],
+    "image_path": "/static/images/accessories.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "elec_007",
+    "name": "FrameCast 4K Monitor",
+    "brand": "DisplayLab",
+    "category": "displays",
+    "subcategory": "monitors",
+    "description": "27-inch 4K IPS monitor for editing, analysis, and creative workflows.",
+    "price": 429,
+    "gender": "unisex",
+    "activity": [
+      "work",
+      "creative"
+    ],
+    "fit": "desk",
+    "material": "metal plastic",
+    "color": "black",
+    "season": [
+      "all"
+    ],
+    "tags": [
+      "4k",
+      "ips"
+    ],
+    "image_path": "/static/images/outerwear.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "elec_008",
+    "name": "HyperDock 9-in-1",
+    "brand": "DockForge",
+    "category": "accessories",
+    "subcategory": "docks",
+    "description": "USB-C docking hub with HDMI, Ethernet, SD, and power passthrough.",
+    "price": 99,
+    "gender": "unisex",
+    "activity": [
+      "work"
+    ],
+    "fit": "compact",
+    "material": "aluminum",
+    "color": "gray",
+    "season": [
+      "all"
+    ],
+    "tags": [
+      "usb-c",
+      "hub"
+    ],
+    "image_path": "/static/images/accessories.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "elec_009",
+    "name": "PulseWatch Fit",
+    "brand": "BodySync",
+    "category": "wearables",
+    "subcategory": "smartwatches",
+    "description": "Fitness smartwatch with GPS tracking and recovery insights.",
+    "price": 279,
+    "gender": "unisex",
+    "activity": [
+      "fitness",
+      "running"
+    ],
+    "fit": "wrist",
+    "material": "polymer",
+    "color": "black",
+    "season": [
+      "all"
+    ],
+    "tags": [
+      "gps",
+      "health"
+    ],
+    "image_path": "/static/images/accessories.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "elec_010",
+    "name": "TrailCam Action 2",
+    "brand": "MotionPeak",
+    "category": "cameras",
+    "subcategory": "action-cameras",
+    "description": "Rugged 4K action camera with stabilization for outdoor adventures.",
+    "price": 329,
+    "gender": "unisex",
+    "activity": [
+      "travel",
+      "outdoor"
+    ],
+    "fit": "compact",
+    "material": "polycarbonate",
+    "color": "black",
+    "season": [
+      "all"
+    ],
+    "tags": [
+      "4k",
+      "rugged"
+    ],
+    "image_path": "/static/images/outerwear.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "elec_011",
+    "name": "SkyMesh WiFi Router",
+    "brand": "NetOrbit",
+    "category": "networking",
+    "subcategory": "routers",
+    "description": "WiFi 6 mesh-ready router built for low-latency home coverage.",
+    "price": 189,
+    "gender": "unisex",
+    "activity": [
+      "home"
+    ],
+    "fit": "desktop",
+    "material": "plastic",
+    "color": "white",
+    "season": [
+      "all"
+    ],
+    "tags": [
+      "wifi6",
+      "mesh"
+    ],
+    "image_path": "/static/images/accessories.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "elec_012",
+    "name": "CorePad Mechanical Keyboard",
+    "brand": "TypeCraft",
+    "category": "accessories",
+    "subcategory": "keyboards",
+    "description": "Mechanical keyboard with tactile switches and hot-swap support.",
+    "price": 139,
+    "gender": "unisex",
+    "activity": [
+      "work",
+      "gaming"
+    ],
+    "fit": "desk",
+    "material": "aluminum",
+    "color": "black",
+    "season": [
+      "all"
+    ],
+    "tags": [
+      "mechanical",
+      "rgb"
+    ],
+    "image_path": "/static/images/accessories.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "elec_013",
+    "name": "SwiftGlide Mouse Pro",
+    "brand": "TypeCraft",
+    "category": "accessories",
+    "subcategory": "mice",
+    "description": "Ergonomic wireless mouse with high-precision sensor and USB-C charging.",
+    "price": 79,
+    "gender": "unisex",
+    "activity": [
+      "work"
+    ],
+    "fit": "ergonomic",
+    "material": "polymer",
+    "color": "graphite",
+    "season": [
+      "all"
+    ],
+    "tags": [
+      "wireless",
+      "ergonomic"
+    ],
+    "image_path": "/static/images/accessories.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "elec_014",
+    "name": "ChargeBrick 100W",
+    "brand": "VoltEdge",
+    "category": "accessories",
+    "subcategory": "chargers",
+    "description": "Dual USB-C 100W GaN charger for laptop and phone fast-charging.",
+    "price": 69,
+    "gender": "unisex",
+    "activity": [
+      "travel"
+    ],
+    "fit": "compact",
+    "material": "composite",
+    "color": "white",
+    "season": [
+      "all"
+    ],
+    "tags": [
+      "gan",
+      "fast-charge"
+    ],
+    "image_path": "/static/images/accessories.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "elec_015",
+    "name": "StudioMic USB",
+    "brand": "WaveForm",
+    "category": "audio",
+    "subcategory": "microphones",
+    "description": "Plug-and-play condenser USB mic for streaming and online calls.",
+    "price": 149,
+    "gender": "unisex",
+    "activity": [
+      "work",
+      "streaming"
+    ],
+    "fit": "desk",
+    "material": "metal",
+    "color": "black",
+    "season": [
+      "all"
+    ],
+    "tags": [
+      "usb",
+      "creator"
+    ],
+    "image_path": "/static/images/accessories.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "elec_016",
+    "name": "VisionPanel 34",
+    "brand": "DisplayLab",
+    "category": "displays",
+    "subcategory": "ultrawide-monitors",
+    "description": "34-inch ultrawide monitor designed for multitasking and dashboards.",
+    "price": 599,
+    "gender": "unisex",
+    "activity": [
+      "work",
+      "creative"
+    ],
+    "fit": "desk",
+    "material": "metal plastic",
+    "color": "black",
+    "season": [
+      "all"
+    ],
+    "tags": [
+      "ultrawide",
+      "productivity"
+    ],
+    "image_path": "/static/images/outerwear.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "elec_017",
+    "name": "SnapLite Tablet 11",
+    "brand": "CircuitOne",
+    "category": "tablets",
+    "subcategory": "tablets",
+    "description": "11-inch tablet for notes, drawing, and media on the go.",
+    "price": 499,
+    "gender": "unisex",
+    "activity": [
+      "study",
+      "travel"
+    ],
+    "fit": "portable",
+    "material": "aluminum",
+    "color": "gray",
+    "season": [
+      "all"
+    ],
+    "tags": [
+      "tablet",
+      "portable"
+    ],
+    "image_path": "/static/images/accessories.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "elec_018",
+    "name": "RenderBox Mini PC",
+    "brand": "VoltEdge",
+    "category": "computers",
+    "subcategory": "mini-pcs",
+    "description": "Small-form desktop with strong thermals for coding and media tasks.",
+    "price": 749,
+    "gender": "unisex",
+    "activity": [
+      "work",
+      "home"
+    ],
+    "fit": "desktop",
+    "material": "aluminum",
+    "color": "black",
+    "season": [
+      "all"
+    ],
+    "tags": [
+      "compact",
+      "desktop"
+    ],
+    "image_path": "/static/images/footwear.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "elec_019",
+    "name": "DataVault SSD 2TB",
+    "brand": "CoreStore",
+    "category": "storage",
+    "subcategory": "portable-ssd",
+    "description": "Fast portable SSD with hardware encryption and USB-C interface.",
+    "price": 219,
+    "gender": "unisex",
+    "activity": [
+      "work",
+      "travel"
+    ],
+    "fit": "portable",
+    "material": "aluminum",
+    "color": "blue",
+    "season": [
+      "all"
+    ],
+    "tags": [
+      "ssd",
+      "encrypted"
+    ],
+    "image_path": "/static/images/accessories.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "elec_020",
+    "name": "BeamCast Projector Go",
+    "brand": "LightFrame",
+    "category": "displays",
+    "subcategory": "projectors",
+    "description": "Portable smart projector for movie nights and presentations.",
+    "price": 459,
+    "gender": "unisex",
+    "activity": [
+      "home",
+      "travel"
+    ],
+    "fit": "portable",
+    "material": "polycarbonate",
+    "color": "white",
+    "season": [
+      "all"
+    ],
+    "tags": [
+      "portable",
+      "smart"
+    ],
+    "image_path": "/static/images/outerwear.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  }
+]

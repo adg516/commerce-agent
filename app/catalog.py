@@ -24,11 +24,13 @@ def build_embedding_text(product: Product) -> str:
 
 
 class CatalogStore:
-    def __init__(self, catalog_path: Path, embeddings_path: Path):
+    def __init__(self, catalog_slug: str, catalog_path: Path, embeddings_path: Path):
+        self.catalog_slug = catalog_slug
         self.catalog_path = catalog_path
         self.embeddings_path = embeddings_path
         self.products = self._load_products()
         self.product_map = {product.id: product for product in self.products}
+        self.product_index = {product.id: idx for idx, product in enumerate(self.products)}
         self.embedding_texts = [build_embedding_text(product) for product in self.products]
         self.embeddings = self._load_embeddings()
 
@@ -125,7 +127,7 @@ class CatalogStore:
             return self._keyword_fallback(query_text="", products=products, top_k=top_k)
         query_embedding = query_embedding / query_norm
 
-        product_indices = [self.products.index(product) for product in products]
+        product_indices = [self.product_index[product.id] for product in products]
         candidate_matrix = self.embeddings[product_indices]
         scores = candidate_matrix @ query_embedding
         ranked_positions = np.argsort(scores)[::-1][:top_k]
@@ -138,6 +140,7 @@ class CatalogStore:
                     "product": product.model_dump(),
                     "score": round(float(scores[int(position)]), 4),
                     "match_reason": "semantic_similarity",
+                    "catalog_slug": self.catalog_slug,
                 }
             )
         return results
@@ -162,15 +165,130 @@ class CatalogStore:
                 "product": product.model_dump(),
                 "score": round(score, 4),
                 "match_reason": "keyword_fallback",
+                "catalog_slug": self.catalog_slug,
             }
             for score, product in ranked
         ]
 
 
+class CatalogRegistry:
+    def __init__(self, catalogs_root: Path, default_catalog_slug: str = "athletic"):
+        self.catalogs_root = catalogs_root
+        self.default_catalog_slug = default_catalog_slug
+        self._stores: dict[str, CatalogStore] = {}
+        self.reload()
+
+    def reload(self) -> None:
+        self._stores.clear()
+        if not self.catalogs_root.exists():
+            self.catalogs_root.mkdir(parents=True, exist_ok=True)
+
+        for path in sorted(self.catalogs_root.iterdir()):
+            if not path.is_dir():
+                continue
+            if path.name.startswith("_"):
+                continue
+            catalog_path = path / "catalog.json"
+            embeddings_path = path / "embeddings.npy"
+            if not catalog_path.exists():
+                continue
+            self._stores[path.name] = CatalogStore(
+                catalog_slug=path.name,
+                catalog_path=catalog_path,
+                embeddings_path=embeddings_path,
+            )
+
+    def list_catalogs(self) -> list[dict[str, str]]:
+        catalogs = []
+        for slug in sorted(self._stores):
+            catalogs.append(
+                {
+                    "slug": slug,
+                    "name": slug.replace("-", " ").replace("_", " ").title(),
+                }
+            )
+        return catalogs
+
+    def get_store(self, catalog_slug: str | None) -> CatalogStore | None:
+        slug = catalog_slug or self.default_catalog_slug
+        return self._stores.get(slug)
+
+    def search(
+        self,
+        *,
+        catalog_slug: str | None,
+        query_embedding: np.ndarray | None,
+        query_text: str,
+        filters: dict[str, Any] | None = None,
+        top_k: int = 5,
+    ) -> list[dict[str, Any]]:
+        if catalog_slug and catalog_slug != "all":
+            store = self.get_store(catalog_slug)
+            if not store:
+                return []
+            return store.search(
+                query_embedding=query_embedding,
+                query_text=query_text,
+                filters=filters,
+                top_k=top_k,
+            )
+
+        merged_results: list[dict[str, Any]] = []
+        for store in self._stores.values():
+            merged_results.extend(
+                store.search(
+                    query_embedding=query_embedding,
+                    query_text=query_text,
+                    filters=filters,
+                    top_k=top_k,
+                )
+            )
+
+        merged_results.sort(key=lambda item: float(item.get("score", 0.0)), reverse=True)
+        return merged_results[:top_k]
+
+    def get_product(self, product_id: str, catalog_slug: str | None = None) -> Product | None:
+        if catalog_slug and catalog_slug != "all":
+            store = self.get_store(catalog_slug)
+            return store.get_product(product_id) if store else None
+
+        for store in self._stores.values():
+            product = store.get_product(product_id)
+            if product:
+                return product
+        return None
+
+    def get_reviews(self, product_id: str, catalog_slug: str | None = None) -> list[dict[str, Any]]:
+        if catalog_slug and catalog_slug != "all":
+            store = self.get_store(catalog_slug)
+            return store.get_reviews(product_id) if store else []
+
+        for store in self._stores.values():
+            product = store.get_product(product_id)
+            if product:
+                return store.get_reviews(product_id)
+        return []
+
+    def save_uploaded_catalog(self, slug: str, products: list[dict[str, Any]]) -> tuple[Path, Path]:
+        target_dir = self.catalogs_root / slug
+        target_dir.mkdir(parents=True, exist_ok=True)
+        catalog_path = target_dir / "catalog.json"
+        embeddings_path = target_dir / "embeddings.npy"
+        catalog_path.write_text(json.dumps(products, indent=2), encoding="utf-8")
+        return catalog_path, embeddings_path
+
+    def register_uploaded_catalog(self, slug: str, catalog_path: Path, embeddings_path: Path) -> None:
+        self._stores[slug] = CatalogStore(
+            catalog_slug=slug,
+            catalog_path=catalog_path,
+            embeddings_path=embeddings_path,
+        )
+
+
 @lru_cache(maxsize=1)
-def get_catalog_store() -> CatalogStore:
+def get_catalog_registry() -> CatalogRegistry:
     settings = get_settings()
-    return CatalogStore(
-        catalog_path=settings.resolved_catalog_path,
-        embeddings_path=settings.resolved_embeddings_path,
+    return CatalogRegistry(
+        catalogs_root=settings.resolved_catalogs_root,
+        default_catalog_slug=settings.default_catalog_slug,
     )

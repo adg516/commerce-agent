@@ -1,0 +1,703 @@
+[
+  {
+    "id": "str_001",
+    "name": "MetroPulse Hoodie",
+    "brand": "VoltWeave",
+    "category": "tops",
+    "subcategory": "hoodies",
+    "description": "Relaxed heavyweight hoodie with clean street-ready silhouette.",
+    "price": 72,
+    "gender": "unisex",
+    "activity": [
+      "casual",
+      "streetwear"
+    ],
+    "fit": "oversized",
+    "material": "cotton fleece",
+    "color": "black",
+    "season": [
+      "fall",
+      "winter"
+    ],
+    "tags": [
+      "street",
+      "cozy"
+    ],
+    "image_path": "/static/images/tops.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "str_002",
+    "name": "Skyline Crop Hoodie",
+    "brand": "VoltWeave",
+    "category": "tops",
+    "subcategory": "hoodies",
+    "description": "Cropped hoodie with soft brushed interior for layered fits.",
+    "price": 64,
+    "gender": "unisex",
+    "activity": [
+      "casual"
+    ],
+    "fit": "cropped",
+    "material": "cotton blend",
+    "color": "sage",
+    "season": [
+      "spring",
+      "fall"
+    ],
+    "tags": [
+      "cropped",
+      "layering"
+    ],
+    "image_path": "/static/images/tops.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "str_003",
+    "name": "Nightline Cargo Pant",
+    "brand": "CoreMotion",
+    "category": "bottoms",
+    "subcategory": "cargo-pants",
+    "description": "Utility cargo pants with tapered leg and stretch waist.",
+    "price": 78,
+    "gender": "unisex",
+    "activity": [
+      "casual",
+      "travel"
+    ],
+    "fit": "regular",
+    "material": "cotton twill",
+    "color": "charcoal",
+    "season": [
+      "all"
+    ],
+    "tags": [
+      "utility",
+      "street"
+    ],
+    "image_path": "/static/images/bottoms.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "str_004",
+    "name": "StrideSplit Run Shorts",
+    "brand": "SprintFlex",
+    "category": "bottoms",
+    "subcategory": "shorts",
+    "description": "Split-hem shorts with mesh liner and zip pocket.",
+    "price": 38,
+    "gender": "unisex",
+    "activity": [
+      "running",
+      "training"
+    ],
+    "fit": "regular",
+    "material": "polyester",
+    "color": "teal",
+    "season": [
+      "spring",
+      "summer"
+    ],
+    "tags": [
+      "lightweight",
+      "zip-pocket"
+    ],
+    "image_path": "/static/images/bottoms.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "str_005",
+    "name": "BlockTone Tee",
+    "brand": "PeakForm",
+    "category": "tops",
+    "subcategory": "t-shirts",
+    "description": "Boxy tee with premium drape for clean street styling.",
+    "price": 36,
+    "gender": "unisex",
+    "activity": [
+      "casual"
+    ],
+    "fit": "boxy",
+    "material": "cotton",
+    "color": "off-white",
+    "season": [
+      "all"
+    ],
+    "tags": [
+      "boxy",
+      "minimal"
+    ],
+    "image_path": "/static/images/tops.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "str_006",
+    "name": "CityWave Overshirt",
+    "brand": "NorthArc",
+    "category": "outerwear",
+    "subcategory": "overshirts",
+    "description": "Midweight overshirt for transitional weather layering.",
+    "price": 84,
+    "gender": "unisex",
+    "activity": [
+      "casual",
+      "travel"
+    ],
+    "fit": "regular",
+    "material": "cotton blend",
+    "color": "olive",
+    "season": [
+      "spring",
+      "fall"
+    ],
+    "tags": [
+      "layering",
+      "transitional"
+    ],
+    "image_path": "/static/images/outerwear.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "str_007",
+    "name": "ArcRunner Retro",
+    "brand": "SprintFlex",
+    "category": "footwear",
+    "subcategory": "sneakers",
+    "description": "Retro runner silhouette with cushioned daily comfort.",
+    "price": 109,
+    "gender": "unisex",
+    "activity": [
+      "casual",
+      "walking"
+    ],
+    "fit": "regular",
+    "material": "mesh suede",
+    "color": "navy",
+    "season": [
+      "all"
+    ],
+    "tags": [
+      "retro",
+      "daily"
+    ],
+    "image_path": "/static/images/footwear.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "str_008",
+    "name": "LunaCourt Classic",
+    "brand": "CoreMotion",
+    "category": "footwear",
+    "subcategory": "sneakers",
+    "description": "Court-inspired sneaker with clean lines and stable base.",
+    "price": 99,
+    "gender": "unisex",
+    "activity": [
+      "casual"
+    ],
+    "fit": "regular",
+    "material": "synthetic leather",
+    "color": "white",
+    "season": [
+      "all"
+    ],
+    "tags": [
+      "classic",
+      "court"
+    ],
+    "image_path": "/static/images/footwear.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "str_009",
+    "name": "Signal Beanie",
+    "brand": "AeroTrail",
+    "category": "accessories",
+    "subcategory": "beanies",
+    "description": "Rib-knit beanie for cold days and city walks.",
+    "price": 24,
+    "gender": "unisex",
+    "activity": [
+      "casual"
+    ],
+    "fit": "regular",
+    "material": "acrylic wool",
+    "color": "black",
+    "season": [
+      "fall",
+      "winter"
+    ],
+    "tags": [
+      "warm",
+      "street"
+    ],
+    "image_path": "/static/images/accessories.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "str_010",
+    "name": "CrossCity Sling",
+    "brand": "VoltWeave",
+    "category": "accessories",
+    "subcategory": "bags",
+    "description": "Compact sling bag with internal organizer pockets.",
+    "price": 42,
+    "gender": "unisex",
+    "activity": [
+      "travel",
+      "casual"
+    ],
+    "fit": "compact",
+    "material": "recycled nylon",
+    "color": "graphite",
+    "season": [
+      "all"
+    ],
+    "tags": [
+      "edc",
+      "compact"
+    ],
+    "image_path": "/static/images/accessories.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "str_011",
+    "name": "RiverStone Denim Jogger",
+    "brand": "PeakForm",
+    "category": "bottoms",
+    "subcategory": "joggers",
+    "description": "Jogger fit with denim look and stretch comfort.",
+    "price": 68,
+    "gender": "unisex",
+    "activity": [
+      "casual"
+    ],
+    "fit": "tapered",
+    "material": "denim stretch",
+    "color": "indigo",
+    "season": [
+      "all"
+    ],
+    "tags": [
+      "jogger",
+      "denim-look"
+    ],
+    "image_path": "/static/images/bottoms.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "str_012",
+    "name": "NeonTrim Windbreaker",
+    "brand": "SprintFlex",
+    "category": "outerwear",
+    "subcategory": "windbreakers",
+    "description": "Lightweight windbreaker with contrast trim and hood.",
+    "price": 79,
+    "gender": "unisex",
+    "activity": [
+      "casual",
+      "running"
+    ],
+    "fit": "regular",
+    "material": "nylon",
+    "color": "black neon",
+    "season": [
+      "spring",
+      "fall"
+    ],
+    "tags": [
+      "wind",
+      "lightweight"
+    ],
+    "image_path": "/static/images/outerwear.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "str_013",
+    "name": "MonoTone Track Jacket",
+    "brand": "CoreMotion",
+    "category": "outerwear",
+    "subcategory": "track-jackets",
+    "description": "Streamlined track jacket with subtle matte finish.",
+    "price": 74,
+    "gender": "unisex",
+    "activity": [
+      "casual",
+      "training"
+    ],
+    "fit": "regular",
+    "material": "poly tricot",
+    "color": "stone",
+    "season": [
+      "spring",
+      "fall"
+    ],
+    "tags": [
+      "track",
+      "minimal"
+    ],
+    "image_path": "/static/images/outerwear.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "str_014",
+    "name": "Gridline Tee Long",
+    "brand": "NorthArc",
+    "category": "tops",
+    "subcategory": "long-sleeves",
+    "description": "Long-sleeve tee with breathable cotton and relaxed drape.",
+    "price": 44,
+    "gender": "unisex",
+    "activity": [
+      "casual"
+    ],
+    "fit": "regular",
+    "material": "cotton",
+    "color": "dusty rose",
+    "season": [
+      "all"
+    ],
+    "tags": [
+      "long-sleeve",
+      "soft"
+    ],
+    "image_path": "/static/images/tops.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "str_015",
+    "name": "FlexCourt Shorts",
+    "brand": "PeakForm",
+    "category": "bottoms",
+    "subcategory": "shorts",
+    "description": "Athletic shorts that pair with tees and hoodies for city wear.",
+    "price": 41,
+    "gender": "unisex",
+    "activity": [
+      "casual",
+      "training"
+    ],
+    "fit": "regular",
+    "material": "poly blend",
+    "color": "sand",
+    "season": [
+      "summer"
+    ],
+    "tags": [
+      "versatile",
+      "athleisure"
+    ],
+    "image_path": "/static/images/bottoms.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "str_016",
+    "name": "MetroStep Knit Sneaker",
+    "brand": "VoltWeave",
+    "category": "footwear",
+    "subcategory": "sneakers",
+    "description": "Breathable knit sneaker for all-day city movement.",
+    "price": 114,
+    "gender": "unisex",
+    "activity": [
+      "walking",
+      "casual"
+    ],
+    "fit": "regular",
+    "material": "knit mesh",
+    "color": "gray",
+    "season": [
+      "all"
+    ],
+    "tags": [
+      "knit",
+      "all-day"
+    ],
+    "image_path": "/static/images/footwear.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "str_017",
+    "name": "SignalChain Necklace",
+    "brand": "AeroTrail",
+    "category": "accessories",
+    "subcategory": "jewelry",
+    "description": "Minimal stainless necklace for subtle styling.",
+    "price": 29,
+    "gender": "unisex",
+    "activity": [
+      "casual"
+    ],
+    "fit": "regular",
+    "material": "stainless steel",
+    "color": "silver",
+    "season": [
+      "all"
+    ],
+    "tags": [
+      "minimal",
+      "accessory"
+    ],
+    "image_path": "/static/images/accessories.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "str_018",
+    "name": "PatchLogo Crew",
+    "brand": "CoreMotion",
+    "category": "tops",
+    "subcategory": "sweatshirts",
+    "description": "Classic crewneck sweatshirt with understated chest patch.",
+    "price": 58,
+    "gender": "unisex",
+    "activity": [
+      "casual"
+    ],
+    "fit": "regular",
+    "material": "cotton fleece",
+    "color": "heather gray",
+    "season": [
+      "fall",
+      "winter"
+    ],
+    "tags": [
+      "crewneck",
+      "everyday"
+    ],
+    "image_path": "/static/images/tops.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "str_019",
+    "name": "Nomad Utility Vest",
+    "brand": "NorthArc",
+    "category": "outerwear",
+    "subcategory": "vests",
+    "description": "Layering vest with utility pockets and matte finish.",
+    "price": 69,
+    "gender": "unisex",
+    "activity": [
+      "casual",
+      "travel"
+    ],
+    "fit": "regular",
+    "material": "nylon",
+    "color": "olive",
+    "season": [
+      "spring",
+      "fall"
+    ],
+    "tags": [
+      "utility",
+      "layering"
+    ],
+    "image_path": "/static/images/outerwear.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "str_020",
+    "name": "StreetStride Cap",
+    "brand": "PeakForm",
+    "category": "accessories",
+    "subcategory": "caps",
+    "description": "Low-profile cap with moisture-wicking inner band.",
+    "price": 26,
+    "gender": "unisex",
+    "activity": [
+      "casual"
+    ],
+    "fit": "regular",
+    "material": "cotton nylon",
+    "color": "navy",
+    "season": [
+      "spring",
+      "summer"
+    ],
+    "tags": [
+      "cap",
+      "daily"
+    ],
+    "image_path": "/static/images/accessories.png",
+    "reviews": [
+      {
+        "text": "Solid quality for the price and easy to use day-to-day.",
+        "rating": 4
+      },
+      {
+        "text": "Looks great and performs as expected.",
+        "rating": 5
+      }
+    ]
+  }
+]

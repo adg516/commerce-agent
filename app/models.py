@@ -31,6 +31,7 @@ class ChatRequest(BaseModel):
     message: str = ""
     image_b64: str | None = None
     conversation_id: str | None = None
+    catalog: str = "all"
 
 
 class Source(BaseModel):
@@ -44,3 +45,8 @@ class ChatResponse(BaseModel):
     products: list[Product]
     sources: list[Source] = Field(default_factory=list)
     metadata: dict[str, Any] = Field(default_factory=dict)
+
+
+class CatalogInfo(BaseModel):
+    slug: str
+    name: str
